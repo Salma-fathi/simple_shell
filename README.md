@@ -20,10 +20,10 @@ References
 Introduction
 This document provides an overview and documentation for the Simple Shell project. The Simple Shell project is a UNIX command-line interpreter created as part of the ALX SE curriculum.
 
-Project Description
+Project Description:
 The Simple Shell project is a basic shell that allows users to interact with the system by running simple commands. It supports executing commands, managing environment variables, handling built-in commands like exit and env, and more.
 
-Project Requirements
+Project Requirements:
 The project requirements, as outlined in the task list, include:
 
 Writing a simple shell with a prompt.
@@ -48,12 +48,10 @@ Building and Running
 To build the Simple Shell project, you can use the provided Makefile. Simply run make to compile the code:
 
 shell
-Copy code
 $ make
 To run the shell, execute the generated simple_shell binary:
 
 shell
-Copy code
 $ ./simple_shell
 Functionality
 The Simple Shell project provides the following functionality:
@@ -61,18 +59,17 @@ The Simple Shell project provides the following functionality:
 Displaying a prompt and waiting for user input.
 Handling simple commands and executing them.
 Managing environment variables.
-Handling built-in commands like exit, env, cd, and more.
+Handling bmands like exit, env, cd, and more.
 Managing variables like $$ and $?.
 Handling logical operators ;, &&, and ||.
 Reading commands from a file.
-Project Implementation
+Project Implementation:
 The project is implemented in C and follows the requirements outlined in the tasks. It uses system calls like fork, execve, chdir, getenv, and others to manage processes, execute commands, and handle environment variables.
 
-Testing
+Testing:
 The project includes a set of test cases in the tests directory. You can run the tests using the provided test script:
 
 shell
-Copy code
 $ ./run_tests.sh
 These tests cover various aspects of the shell's functionality, ensuring that it behaves as expected.
 
@@ -80,5 +77,5 @@ Known Issues
 List any known issues or limitations in your shell.
 Future Improvements
 Mention any possible improvements or enhancements you plan to make in the future.
-References
+References:
 List any external resources or references you used while working on the project.
