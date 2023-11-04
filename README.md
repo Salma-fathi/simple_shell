@@ -4,6 +4,7 @@ Authors:
 Amna Ahmed
 
 Salma Mohammed
+
 Project Deadline: Nov 16, 2023
 
 Table of Contents
@@ -43,14 +44,21 @@ Implementing the setenv and unsetenv built-in commands.
 Handling variables like $$ and $?.
 Handling comments.
 Reading commands from a file.
-Project Structure
+
+Project Structure:
+
 The project structure consists of several C source code files. Here are the main files and directories:
 
 src: This directory contains the source code for the Simple Shell.
+
 include: Header files used in the project.
+
 tests: Test cases for the shell.
+
 README.md: A file with project information.
+
 AUTHORS: A file listing the authors of the project.
+
 Building and Running
 To build the Simple Shell project, you can use the provided Makefile. Simply run make to compile the code:
 
@@ -65,16 +73,24 @@ Functionality
 The Simple Shell project provides the following functionality:
 
 Displaying a prompt and waiting for user input.
+
 Handling simple commands and executing them.
+
 Managing environment variables.
+
 Handling built-in commands like exit, env, cd, and more.
+
 Managing variables like $$ and $?.
+
 Handling logical operators ;, &&, and ||.
 Reading commands from a file.
-Project Implementation
+
+Project Implementation:
+
 The project is implemented in C and follows the requirements outlined in the tasks. It uses system calls like fork, execve, chdir, getenv, and others to manage processes, execute commands, and handle environment variables.
 
-Testing
+Testing:
+
 The project includes a set of test cases in the tests directory. You can run the tests using the provided test script:
 
 shell$
