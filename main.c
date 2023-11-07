@@ -14,9 +14,9 @@ int main(int ac, char **argv)
     size_t n = 0;
     ssize_t ch_read;
     const char *delim = " \n\t\a";
-    int numbers_of_tokens = 0;
+    int number_of_tokens = 0;
     char *token;
-    int i;
+    int j;
     (void)ac;
   while (1)
     {
@@ -35,33 +35,33 @@ int main(int ac, char **argv)
             perror("MEMORY ALLOCATION ERROR");
             return (-1);
         }
-        strcpy(linptr_cpy, linptr);      
-        token = strtok(lineptr, delim);
+        _strcpy(linptr_cpy, linptr);      
+        token = strtok(linptr, delim);
 
         while (token != NULL)
         {
             number_of_tokens++;
             token = strtok(NULL, delim);
         }
-        number_of__tokens++;
+        number_of_tokens++;
         argv = malloc(sizeof(char *) * number_of_tokens);
        
-        token = strtok(lineptr_cpy, delim);
+        token = strtok(linptr_cpy, delim);
 
         for (j = 0; token != NULL; j++)
         {
-            argv[j] = malloc(sizeof(char) * strlen(token));
-            strcpy(argv[i], token);
+            argv[j] = malloc(sizeof(char) * (*_strlen(token)));
+            _strcpy(argv[j], token);
 
             token = strtok(NULL, delim);
         }
         argv[j] = NULL;
-        execute_cmd(argv);
+        execute_command(argv);
     }
 
     
     free(linptr_cpy);
-    free(lineptr);
+    free(linptr);
 
     return (0);
 }

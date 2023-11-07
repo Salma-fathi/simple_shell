@@ -19,7 +19,7 @@ if (path)
 while (path_token != NULL)
 {
 	dir_length = _strlen(path_token);
-	fil_path = malloc(cmd_length + dir_length + 2);
+	fil_path = malloc((cmd_length * dir_length) + 2);
 	_strcpy(fil_path, path_token);
 	_strcat(fil_path, "/");
 	_strcat(fil_path, command);
