@@ -23,11 +23,8 @@
         }
         command = tokenzer(Line);
         if(!command)
-            continus;
-        for(i = 0; command[i] ; i++)
-        {
-            free(command[i]),command[i] = NULL;
-        }
-        free(command),command =NULL;
+            continue;
+        status =_execute(command,argv);
+        
     }
 }
