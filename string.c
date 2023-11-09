@@ -1,4 +1,4 @@
-#include "main.h"
+#include "shell.h"
 
 /**
  * _strcpy - copies string two into string one string
@@ -75,3 +75,49 @@ while (*src)
 	*dest++ = *src++;
 *dest = *src;
 return (ret); }
+
+
+/**
+ * _strcmp - compares 2 strings
+ * @s1: first string
+ * @s2: second string
+ *
+ * Return: 0 if it the same
+ */
+
+int _strcmp(char *s1, char *s2)
+{
+	int i = 0;
+
+	while (s1[i] - s2[i] == 0 && s1[i] != '\0')
+	{
+		i++;
+	}
+	return (s1[i] - s2[i]);
+}
+
+/**
+ * _strchr - Returns a pointer to the first
+ *       occurrence of the character
+ * @s: string to search
+ * @c: character to be searched for
+ *
+ * Return: the location
+ */
+
+char *_strchr(char *s, char c)
+{
+	int i;
+
+	for (i = 0; s[i] != '\0'; i++)
+	{
+		if (s[i] == c)
+		{
+			return (&s[i]);
+		}
+	}
+	return (0);
+}
+
+
+
