@@ -55,8 +55,7 @@ char *_strdup(char *str)
  * @str1: first string
  * @str2: second string
  * @num: size
- * Return: comparsion
- */
+ * Return: comparsions  */
 int _strncmp(const char *str1, const char *str2, size_t num)
 {
 	size_t i;

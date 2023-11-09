@@ -9,12 +9,14 @@
 #include <sys/wait.h>
 
 #define ARR "\t\n"
-extern char enviroment;
+extern char **enviroment;
 
 
 char *readline(void);
 char **tokenzer;(char *Line)
+
 int _execute(char **command ,char **argv)
+void freaarystring(char **arry)
 
 
 

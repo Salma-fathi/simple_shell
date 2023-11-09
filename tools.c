@@ -1,6 +1,7 @@
 #include "shell.h"
 
-freeeaarystring(char **arry)
+
+void freaarystring(char **arry)
 {
     int i;
     if(!arry)
