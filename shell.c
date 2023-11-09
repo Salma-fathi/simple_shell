@@ -11,14 +11,16 @@
     char **command =NULL;
     int status;
     (void) ac;
+
+
     while (1)
     {
-        Line =readline();
+        Line = readline();
         if (Line == NULL)
         {
                     
-            if(isatty(STDIN_FILEND))
-                 write(STDOUT_FILEND,"\n", 1 )                      /* reache EOF ctr+d */
+            if(isatty(STDIN_FILENDO))
+                write(STDOUT_FILENDO,"\n", 1 );                     /* reache EOF ctr+d */
             return(status);
         }
         command = tokenzer(Line);
