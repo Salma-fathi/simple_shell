@@ -9,7 +9,7 @@
 {
     char *Line = NULL;
     char **command =NULL;
-    int status;
+    int status = 0 , ind = 0;
     (void) ac;
 
 
@@ -23,10 +23,12 @@
                 write(STDOUT_FILENDO,"\n", 1 );                     /* reache EOF ctr+d */
             return(status);
         }
+        ind++;
+
         command = tokenzer(Line);
         if(!command)
             continue;
-        status =_execute(command,argv);
+        status =_execute(command , argv , ind);
         
     }
 }

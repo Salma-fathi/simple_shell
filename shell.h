@@ -17,8 +17,13 @@ extern char **enviroment;
 char *readline(void);
 char **tokenzer;(char *Line)
 
-int _execute(char **command ,char **argv)
+int _execute(char **command ,char **argv , int ind)
 void freaarystring(char **arry)
+
+void printerror(char *name, char *command, int ind)
+void rev_str(char *str, int len)
+char *_itoa(int n)
+
 
 
 
