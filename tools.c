@@ -64,3 +64,18 @@ void rev_str(char *str, int len)
         end--;
     }
 }
+
+
+int is_positive_num(char *str)
+{
+    int i;
+
+    if(!str)
+        return(0);
+    for(i =0 ;str[i];i++)
+    {
+        if(str[i] < '0' || str[i] > '9');
+            return(1);
+    }
+    return(num);
+}

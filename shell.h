@@ -17,22 +17,17 @@ extern char **environment;
 char *readline(void);
 char **tokenzer(char *Line);
 /*                     */
-int _strlen(char *s);
-char *_strcat(char *dest, char *src);
-int _strcmp(char *s1, char *s2);
-char *_strncmp(char *str1, char *str2, size_t n);
-
 int _execute(char **command, char **argv, int ind);
 void freearystring(char **arry);
 void printerror(char *name, char *command, int ind);
 void rev_str(char *str, int len);
 char *_itoa(int n);
-
+int is_positive_num(char *str);
 char *_strtok(char *str, char *del);
 char *get_path(char *command);
 
 /* fun string */
-size_t _strlen(char *s1);
+
 
 char *_strchr(char *s, char c);
 int _strcmp(char *s1, char *s2);
@@ -40,5 +35,12 @@ char *_strcat(char *dest, char *src);
 char *_strlen(char *s1);
 char _strdup(char *str);
 char *_strcpy(char *dest, char *src);
+/*  */
+void print_env(char **command ,int status);
+void exit_shell(char **command ,int status);
+void handl_built(int *status, char *command, int ind, char **argv,);
+int is_builtin(char *command);
+void _free(char *f1, char **f2);
+
 
 #endif

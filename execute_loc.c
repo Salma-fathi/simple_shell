@@ -12,7 +12,7 @@ int _execute(char **command, char **argv, int ind)
     {
         printerror(argv[0], command[0], ind);
         freaarystring(command);
-        return 127;
+        return(127);
     }
 
     child = fork();
