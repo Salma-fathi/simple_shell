@@ -7,7 +7,7 @@
  * @del: separator
  * Return: pointer to the next token
  */
-char *_strtok(char *str, char *del)
+ char *_strtok(char *str, char *del)
 {
     static char *lastToken = NULL;
 

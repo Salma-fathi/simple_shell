@@ -15,7 +15,7 @@ char *read_line(void)
 
     readsize = getline(&line, &buffer, stdin);
 
-    if (read_size <= 0)
+    if (readsize <= 0)
     {
         free(line);
         return NULL;

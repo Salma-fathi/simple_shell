@@ -11,6 +11,7 @@
 #include <ctype.h>
 
 #define ARR "\t\n"
+
 extern char **environment;
 
 char *readline(void);
@@ -21,8 +22,8 @@ char *_strcat(char *dest, char *src);
 int _strcmp(char *s1, char *s2);
 char *_strncmp(char *str1, char *str2, size_t n);
 
-char _execute(char **command, char **argv, int ind);
-void freearystring(char **array);
+int _execute(char **command, char **argv, int ind);
+void freearystring(char **arry);
 void printerror(char *name, char *command, int ind);
 void rev_str(char *str, int len);
 char *_itoa(int n);
@@ -31,6 +32,8 @@ char *_strtok(char *str, char *del);
 char *get_path(char *command);
 
 /* fun string */
+size_t _strlen(char *s1);
+
 char *_strchr(char *s, char c);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);

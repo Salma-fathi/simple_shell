@@ -58,7 +58,7 @@ char *_strdup(char *str)
  *
  * Return: integer length of string
  */
-size_t _strlen(char *s1)
+ char *_strlen(char *s1)
 {
     size_t i = 0;
     if (!s1)
