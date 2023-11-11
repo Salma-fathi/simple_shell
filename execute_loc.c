@@ -1,38 +1,38 @@
 #include "shell.h"
 
-int _execute(char **command ,char **argv , int ind)
+int _execute(char **command, char **argv, int ind)
 {
     pid_t child;
     int status;
     char *full_cmnd;
 
+    full_cmnd = get_path(command[0]);
 
-    full_cmnd =_get_path(command[0]);
-    if(!full_cmnd)
+    if (!full_cmnd)
     {
-        printerror(argv[0], command[0] , ind);
+        printerror(argv[0], command[0], ind);
         freaarystring(command);
-        return(127)
+        return 127;
     }
 
-    child =fork();
-    if(child == 0)
+    child = fork();
+    if (child == 0)
     {
-        if(execve(full_cmnd, command, envrioment) == -1)
+        if (execve(full_cmnd, command, enviroment) == -1)
         {
-            free(full_cmnd) , full_cmnd = NULL;
+            perror("Error");
+            free(full_cmnd);
             freaarystring(command);
+            exit(EXIT_FAILURE);
         }
     }
     else
     {
-        waitpid(child ,&status , 0);
+        waitpid(child, &status, 0);
         freaarystring(command);
-        free(full_cmnd) , full_cmnd = NULL;
-
-
+        free(full_cmnd);
     }
-    return(WEXITSTUTS(status));
-    
 
+    return WEXITSTATUS(status);
 }
+

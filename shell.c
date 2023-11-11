@@ -1,34 +1,33 @@
 #include "shell.h"
+
 /**
  * main - entry point
- * @ac: counts argumnents number
- * @argv: array of string
+ * @ac: counts arguments number
+ * @argv: array of strings
  * Return: 0 always (success)
  */
- int main(int ac,char **argv)
+int main(int ac, char **argv)
 {
     char *Line = NULL;
-    char **command =NULL;
-    int status = 0 , ind = 0;
-    (void) ac;
-
+    char **command = NULL;
+    int status = 0, ind = 0;
+    (void) ac; 
 
     while (1)
     {
         Line = readline();
         if (Line == NULL)
         {
-                    
-            if(isatty(STDIN_FILENDO))
-                write(STDOUT_FILENDO,"\n", 1 );                     /* reache EOF ctr+d */
-            return(status);
+            if (isatty(STDIN_FILENO))
+                write(STDOUT_FILENO, "\n", 1);
+            /* reaches EOF (Ctrl+D) */
+            return status;
         }
         ind++;
 
         command = tokenzer(Line);
-        if(!command)
+        if (!command)
             continue;
-        status =_execute(command , argv , ind);
-        
+        status = _execute(command, argv, ind);
     }
 }

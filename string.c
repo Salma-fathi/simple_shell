@@ -1,4 +1,6 @@
 #include "shell.h"
+#include <string.h>
+
 
 /**
  * _strcpy - copies string two into string one string
@@ -29,18 +31,25 @@ while (src[i])
  */
 char *_strdup(char *str)
 {
-int length = 0;
-char *d;
-if (str == NULL)
-	return (NULL);
-while (*str++)
-	length++;
-d = malloc(sizeof(char) * (length + 1));
-if (!d)
-	return (NULL);
-for (length++; length--;)
-	{ d[length] = *--str; }
-return (d); }
+    int length = 0;
+    char *d;
+    
+    if (str == NULL)
+        return NULL;
+    
+    while (*str++)
+        length++;
+    
+    d = malloc(sizeof(char) * (length + 1));
+    if (d == NULL)
+        return NULL;
+    
+    for (length++; length--;)
+        d[length] = *--str;
+    
+    return d;
+}
+
 
 /**
  * _strlen - rfunctio that eturns the length of a string
@@ -49,15 +58,16 @@ return (d); }
  *
  * Return: integer length of string
  */
-char *_strlen(char *s1)
+size_t _strlen(char *s1)
 {
-char * i = 0;
-if (!s1)
-	return (0);
-while (*s1++)
-	i++;
-return (i);
+    size_t i = 0;
+    if (!s1)
+        return 0;
+    while (*s1++)
+        i++;
+    return i;
 }
+
 
 /**
  * _strcat - function that concatenates two strings
