@@ -30,7 +30,7 @@
     }
     else
     {
-        lastToken += _strlen(lastToken);
+        lastToken = _strlen(lastToken);
     }
 
     return tokenStart;

@@ -12,11 +12,12 @@
 
 #define ARR "\t\n"
 
-extern char **environment;
+extern char **enviroment;
 
 char *readline(void);
 char **tokenzer(char *Line);
 /*                     */
+
 int _execute(char **command, char **argv, int ind);
 void freearystring(char **arry);
 void printerror(char *name, char *command, int ind);
@@ -24,7 +25,7 @@ void rev_str(char *str, int len);
 char *_itoa(int n);
 int is_positive_num(char *str);
 char *_strtok(char *str, char *del);
-char *get_path(char *command);
+char get_path(char *command);
 
 /* fun string */
 
@@ -41,6 +42,7 @@ void exit_shell(char **command ,int status);
 void handl_built(int *status, char *command, int ind, char **argv,);
 int is_builtin(char *command);
 void _free(char *f1, char **f2);
+
 
 
 #endif

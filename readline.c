@@ -5,7 +5,7 @@ char *read_line(void)
 {
     char *line = NULL;
     size_t buffer = 0;
-    ssize_t readsize;
+    ssize_t read_size;
 
     if (isatty(STDIN_FILENO))
     {
@@ -13,9 +13,9 @@ char *read_line(void)
         fflush(stdout);
     }
 
-    readsize = getline(&line, &buffer, stdin);
+    read_size = getline(&line, &buffer, stdin);
 
-    if (readsize <= 0)
+    if (read_size <= 0)
     {
         free(line);
         return NULL;
