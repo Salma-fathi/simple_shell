@@ -9,25 +9,26 @@
 {
     char *Line = NULL;
     char **command =NULL;
-    int status;
+    int status = 0 , ind = 0;
     (void) ac;
+
+
     while (1)
     {
-        Line =readline();
+        Line = readline();
         if (Line == NULL)
         {
                     
-            if(isatty(STDIN_FILEND))
-                 write(STDOUT_FILEND,"\n", 1 )                      /* reache EOF ctr+d */
+            if(isatty(STDIN_FILENDO))
+                write(STDOUT_FILENDO,"\n", 1 );                     /* reache EOF ctr+d */
             return(status);
         }
+        ind++;
+
         command = tokenzer(Line);
         if(!command)
-            continus;
-        for(i = 0; command[i] ; i++)
-        {
-            free(command[i]),command[i] = NULL;
-        }
-        free(command),command =NULL;
+            continue;
+        status =_execute(command , argv , ind);
+        
     }
 }

@@ -1,9 +1,9 @@
-#include
+#include "shell.h"
 char **tokenzer;(char *Line)
 {
     char *token;
     char **command NULL ;
-    int count = 0, *tmp =NULL, i =0;
+    int count = 0, *tmp =NULL;
     
 
     if(!Line)
@@ -43,4 +43,3 @@ char **tokenzer;(char *Line)
     command[i] = NULL;
     return(command);
 }
-
