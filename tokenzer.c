@@ -19,15 +19,11 @@ char **tokenzer(char *Line)
         free(tmp);
         return NULL;
     }
-
-
     while (token)
     {
         i++;
         token = _strtok(NULL, ARR);
     }
-
-    
     command = malloc((i + 1) * sizeof(char *));
     if (!command)
     {
@@ -35,8 +31,6 @@ char **tokenzer(char *Line)
         free(tmp);
         return NULL;
     }
-
-    
     token = _strtok(Line, ARR);
     i = 0;
     while (token)
@@ -44,7 +38,6 @@ char **tokenzer(char *Line)
         command[i++] = token;
         token = _strtok(NULL, ARR);
     }
-
     free(Line);
     free(tmp);
     command[i] = NULL;

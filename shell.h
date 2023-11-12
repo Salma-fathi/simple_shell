@@ -11,13 +11,11 @@
 #include <ctype.h>
 
 #define ARR "\t\n"
-
 extern char **enviroment;
 
 char *readline(void);
 char **tokenzer(char *Line);
 /*                     */
-
 int _execute(char **command, char **argv, int ind);
 void freearystring(char **arry);
 void printerror(char *name, char *command, int ind);
@@ -28,8 +26,6 @@ char *_strtok(char *str, char *del);
 char get_path(char *command);
 
 /* fun string */
-
-
 char *_strchr(char *s, char c);
 int _strcmp(char *s1, char *s2);
 char *_strcat(char *dest, char *src);

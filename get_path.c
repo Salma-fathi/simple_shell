@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * get_path - gets the path of the user command
  * @command: the user input
@@ -24,7 +23,6 @@ char *get_path(char *command)
             free(env_path);
             return NULL;
         }
-
         _strcpy(full_cmnd, dir);
         _strcat(full_cmnd, "/");
         _strcat(full_cmnd, command);

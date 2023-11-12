@@ -1,7 +1,5 @@
 #include "shell.h"
 #include <string.h>
-
-
 /**
  * _strcpy - copies string two into string one string
  * Description: c programm
@@ -21,7 +19,6 @@ while (src[i])
 	i++; }
 	dest[i] = 0;
 	return (dest); }
-
 /**
  * *_strdup - function that duplicates a string
  * Description: c programm
@@ -49,8 +46,6 @@ char *_strdup(char *str)
     
     return d;
 }
-
-
 /**
  * _strlen - rfunctio that eturns the length of a string
  *  Description: c programm
@@ -67,8 +62,6 @@ char *_strdup(char *str)
         i++;
     return i;
 }
-
-
 /**
  * _strcat - function that concatenates two strings
  * Description: c programm

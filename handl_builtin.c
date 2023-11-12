@@ -16,17 +16,13 @@ int is_builtin(char **command)
 }
 
 void handl_built(int *status, char **command, int ind, char **argv)
-
 {
-
     (void)argv;
     (void)ind;
-
     if(_strcmp(command[0],"exit") == 0)
         exit_shell(command,status);
     else if(_strcmp(command[0],"env") == 0)
         print_env(command,status);
-
 }
 void exit_shell(char **command ,int *status)
 {
@@ -37,7 +33,6 @@ void exit_shell(char **command ,int *status)
         if(is_positive_num(command[1]))
         {
             exit_val = _itoa(command[1]);
-            
         }
         else
         {
@@ -58,11 +53,8 @@ void exit_shell(char **command ,int *status)
     freearystring(command);
     exit(exit_val);
 }
-
-
 void print_env(int *status)
 {
-    
     int i;
     for(i=0;environment[i];i++)
     {
@@ -70,6 +62,4 @@ void print_env(int *status)
 		write(STDOUT_FILENO, "\n", 1);
     }
     freearystring(command);
-
-
 }

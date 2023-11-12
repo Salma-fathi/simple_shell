@@ -15,11 +15,9 @@ void freearystring(char **arry)
     free(arry);
     arry = NULL;
 }
-
 void printerror(char *name, char *command, int ind)
 {
     char *id, msg[] = ": not found\n";
-
     id = _itoa(ind);
     write(STDERR_FILENO, name, strlen(name));
     write(STDERR_FILENO, ": ", 2);
@@ -29,7 +27,6 @@ void printerror(char *name, char *command, int ind)
     write(STDERR_FILENO, msg, strlen(msg));
     free(id);
 }
-
 char *_itoa(int n)
 {
     char bufr[20];
@@ -50,7 +47,6 @@ char *_itoa(int n)
 
     return _strdup(bufr);
 }
-
 void rev_str(char *str, int len)
 {
     int begin = 0, end = len - 1;
