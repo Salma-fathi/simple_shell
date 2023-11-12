@@ -39,7 +39,7 @@ char *_strcpy(char *dest, char *src);
 /*  */
 void print_env(char **command ,int status);
 void exit_shell(char **command ,int status);
-void handl_built(int *status, char *command, int ind, char **argv,);
+void handl_built(int *status, char *command, int ind, char **argv)
 int is_builtin(char *command);
 void _free(char *f1, char **f2);
 

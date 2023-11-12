@@ -14,7 +14,7 @@ int is_builtin(char *command)
     }
     return 0;
 }
-void handl_builtin(char **command , char **argv ,int *status, int ind)
+void handl_built(int *status, char *command, int ind, char **argv)
 {
     (void)argv;
     (void)ind;

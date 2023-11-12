@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <string.h>
 
 void freearystring(char **arry)
 {
@@ -20,12 +21,12 @@ void printerror(char *name, char *command, int ind)
     char *id, msg[] = ": not found\n";
 
     id = _itoa(ind);
-    write(STDERR_FILENO, name, _strlen(name));
+    write(STDERR_FILENO, name, strlen(name));
     write(STDERR_FILENO, ": ", 2);
-    write(STDERR_FILENO, id, _strlen(id));
+    write(STDERR_FILENO, id, strlen(id));
     write(STDERR_FILENO, ": ", 2);
-    write(STDERR_FILENO, command, _strlen(command));
-    write(STDERR_FILENO, msg, _strlen(msg));
+    write(STDERR_FILENO, command, strlen(command));
+    write(STDERR_FILENO, msg, strlen(msg));
     free(id);
 }
 
