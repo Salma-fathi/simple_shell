@@ -11,28 +11,30 @@ int _execute(char **command, char **argv, int ind)
     if (!full_cmnd)
     {
         printerror(argv[0], command[0], ind);
-        freaarystring(command);
-        return(127);
+        freearystring(command);
+        return 127;
     }
 
     child = fork();
     if (child == 0)
     {
-        if (execve(full_cmnd, command, enviroment) == -1)
+        if (execve(full_cmnd, command, environment) == -1)
         {
-            perror("Error");
-            free(full_cmnd);
-            freaarystring(command);
+            perror("execve failed");
             exit(EXIT_FAILURE);
         }
+        freearystring(command);
+        free(full_cmnd);
+        exit(EXIT_SUCCESS);
     }
     else
     {
         waitpid(child, &status, 0);
-        freaarystring(command);
+        freearystring(command);
         free(full_cmnd);
     }
 
     return WEXITSTATUS(status);
 }
+
 
