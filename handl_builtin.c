@@ -1,21 +1,24 @@
 #include "shell.h"
 
 
-int is_builtin(char *command)
+int is_builtin(char **command)
 {
     char *builten[] = {
         "cd" , "exit" , "env" , "setenv" ,NULL
     };
     int j;
-    fo(j = 0;builten[j];j++)
+    for (j = 0; builten[j]; j++)
     {
         if(_strcmp(command,builten[j]) ==0 )
             return 1;
     }
     return 0;
 }
-void handl_built(int *status, char *command, int ind, char **argv)
+
+void handl_built(int *status, char **command, int ind, char **argv)
+
 {
+
     (void)argv;
     (void)ind;
 
@@ -33,7 +36,9 @@ void exit_shell(char **command ,int *status)
     {
         if(is_positive_num(command[1]))
         {
-            exit_val = _itoa(command[1]);        }
+            exit_val = _itoa(command[1]);
+            
+        }
         else
         {
             idx = _itoa(ind);
@@ -55,10 +60,10 @@ void exit_shell(char **command ,int *status)
 }
 
 
-void print_env(char **command ,int *status)
+void print_env(int *status)
 {
     
-        int i;
+    int i;
     for(i=0;environment[i];i++)
     {
         write(STDOUT_FILENO, environment[i], _strlen(environment[i]));
