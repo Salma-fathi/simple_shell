@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <string.h>
 
 void freearystring(char **arry)
 {
@@ -20,12 +21,13 @@ void printerror(char *name, char *command, int ind)
     char *id, msg[] = ": not found\n";
 
     id = _itoa(ind);
-    write(STDERR_FILENO, name, _strlen(name));
+    write(STDERR_FILENO, name, _strlen(command));
     write(STDERR_FILENO, ": ", 2);
     write(STDERR_FILENO, id, _strlen(id));
     write(STDERR_FILENO, ": ", 2);
     write(STDERR_FILENO, command, _strlen(command));
     write(STDERR_FILENO, msg, _strlen(msg));
+
     free(id);
 }
 
@@ -75,7 +77,7 @@ int is_positive_num(char *str)
     for(i =0 ;str[i];i++)
     {
         if(str[i] < '0' || str[i] > '9');
-            return(1);
+            return 1;
     }
     return(num);
 }

@@ -10,9 +10,9 @@ int is_builtin(char *command)
     fo(j = 0;builten[j];j++)
     {
         if(_strcmp(command,builten[j]) ==0 )
-            return(1);
+            return 1;
     }
-    return(0);
+    return 0;
 }
 void handl_builtin(char **command , char **argv ,int *status, int ind)
 {
@@ -27,18 +27,13 @@ void handl_builtin(char **command , char **argv ,int *status, int ind)
 }
 void exit_shell(char **command ,int *status)
 {
-
-
-
-
     int exit_val = *(status);
-    int indx
+    int indx;
     if(command[1])
     {
         if(is_positive_num(command[1]))
         {
-            exit_val = _itoa(command[1])
-        }
+            exit_val = _itoa(command[1]);        }
         else
         {
             idx = _itoa(ind);
