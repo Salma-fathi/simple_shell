@@ -9,12 +9,11 @@ int is_builtin(char **command)
     int j;
     for (j = 0; builten[j]; j++)
     {
-        if(_strcmp(command,builten[j]) ==0 )
+        if (_strcmp(*command, builten[j]) == 0)
             return 1;
     }
     return 0;
 }
-
 void handl_built(int *status, char **command, int ind, char **argv)
 {
     (void)argv;
@@ -36,10 +35,10 @@ void exit_shell(char **command ,int *status)
         }
         else
         {
-            idx = _itoa(ind);
+            indx = _itoa(ind);
 			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
 			write(STDERR_FILENO, ": ", 2);
-			write(STDERR_FILENO, id, _strlen(id));
+            write(STDERR_FILENO, indx, _strlen(indx));
 			write(STDERR_FILENO, ": exit", 6);
 			write(STDERR_FILENO, ": ", 2);
 			write(STDERR_FILENO, "Illegal number: ", 16);
@@ -53,7 +52,7 @@ void exit_shell(char **command ,int *status)
     freearystring(command);
     exit(exit_val);
 }
-void print_env(int *status)
+void print_env(char **command, int *status)
 {
     int i;
     for(i=0;environment[i];i++)

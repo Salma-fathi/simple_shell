@@ -8,12 +8,10 @@ char *get_path(char *command)
 {
     char *env_path, *full_cmnd, *dir;
     struct stat st;
-
     env_path = _getenv("PATH");
     if (env_path == NULL) {
         return NULL;
     }
-
     dir = _strtok(env_path, ":");
     while (dir)
     {
@@ -36,7 +34,6 @@ char *get_path(char *command)
         free(full_cmnd);
         dir = _strtok(NULL, ":");
     }
-
     free(env_path);
     return NULL;
 }
