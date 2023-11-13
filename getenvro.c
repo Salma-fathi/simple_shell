@@ -5,9 +5,9 @@ char *_getenv(char *var)
     char *tmp, *value, *key, *env;
     int i;
 
-    for (i = 0; enviroment[i]; i++)
+    for (i = 0; environ[i]; i++)
     {
-        tmp = _strdup(enviroment[i]);
+        tmp = _strdup(environ[i]);
         key = _strtok(tmp, "=");
         if (_strcmp(var, key) == 0)
         {

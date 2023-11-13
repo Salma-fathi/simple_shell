@@ -5,7 +5,7 @@ int _execute(char **command, char **argv, int ind)
     pid_t child;
     int status;
     char *full_cmnd;
-    
+
     full_cmnd = get_path(command[0]);
     if (!full_cmnd)
     {
@@ -13,11 +13,11 @@ int _execute(char **command, char **argv, int ind)
         freearystring(command);
         return 127;
     }
-    
+
     child = fork();
     if (child == 0)
     {
-        if (execve(full_cmnd, command, environment) == -1)
+        if (execve(full_cmnd, command, environ) == -1)
         {
             perror("execve failed");
             exit(EXIT_FAILURE);
@@ -30,6 +30,6 @@ int _execute(char **command, char **argv, int ind)
         freearystring(command);
         free(full_cmnd);
     }
-    
+
     return WEXITSTATUS(status);
 }

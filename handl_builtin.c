@@ -54,9 +54,9 @@ void exit_shell(char **command ,int *status)
 void print_env(char **command, int *status)
 {
     int i;
-    for(i=0;environment[i];i++)
+    for(i=0;environ[i];i++)
     {
-        write(STDOUT_FILENO, environment[i], _strlen(environment[i]));
+        write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
 		write(STDOUT_FILENO, "\n", 1);
     }
     freearystring(command);
