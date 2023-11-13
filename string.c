@@ -77,9 +77,8 @@ while (*dest)
 while (*src)
 	*dest++ = *src++;
 *dest = *src;
-return (ret); }
-
-
+return (ret);
+}
 /**
  * _strcmp - compares 2 strings
  * @s1: first string
@@ -87,18 +86,15 @@ return (ret); }
  *
  * Return: 0 if it the same
  */
-
 int _strcmp(char **s1, char **s2);
 {
 	int i = 0;
-
 	while (s1[i] - s2[i] == 0 && s1[i] != '\0')
 	{
 		i++;
 	}
 	return (s1[i] - s2[i]);
 }
-
 /**
  * _strchr - Returns a pointer to the first
  *       occurrence of the character
@@ -107,7 +103,6 @@ int _strcmp(char **s1, char **s2);
  *
  * Return: the location
  */
-
 char *_strchr(char *s, char c)
 {
 	int i;

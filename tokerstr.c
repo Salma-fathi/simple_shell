@@ -7,7 +7,7 @@
  * @del: separator
  * Return: pointer to the next token
  */
- char *_strtok(char *str, char *del)
+char *_strtok(char *str, char *del)
 {
     static char *lastToken = NULL;
 
@@ -21,7 +21,7 @@
     }
 
     char *tokenStart = lastToken;
-    char *tokenEnd = _strpbrk(tokenStart, del);
+    char *tokenEnd = strpbrk(tokenStart, del);
 
     if (tokenEnd != NULL)
     {
@@ -30,7 +30,7 @@
     }
     else
     {
-        lastToken = _strlen(lastToken);
+        lastToken += strlen(lastToken);
     }
 
     return tokenStart;
