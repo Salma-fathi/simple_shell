@@ -1,4 +1,6 @@
 #include "shell.h"
+#include <stdlib.h>
+#include <string.h>
 
 char *get_path(char *command)
 {
