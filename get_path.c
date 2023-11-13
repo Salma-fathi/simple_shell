@@ -8,7 +8,8 @@ char *get_path(char *command)
     if (!env_path)
         return NULL;
 
-    char *dir = strtok(env_path, ":");
+    char *dir;
+    dir = strtok(env_path, ":");
     while (dir != NULL)
     {
         char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
