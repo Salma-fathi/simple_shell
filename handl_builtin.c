@@ -2,17 +2,18 @@
 
 int is_builtin(char **command)
 {
-	char *builtins[] = {"exit", "env","setevn" "cd", NULL};
-	int i;
+    char *builtins[] = {"exit", "env", "setevn", "cd", NULL};
+    int i;
 
-	for (i = 0; builtins[i]; i++)
-	{
-		if (_strcmp(command, builtins[i]) == 0)
-			return (1);
-	}
+    for (i = 0; builtins[i]; i++)
+    {
+        if (_strcmp(command[0], builtins[i]) == 0)
+            return 1;
+    }
 
-	return (0);
+    return 0;
 }
+
 void handle_built(int *status, char **command, int ind, char **argv)
 {
     (void)argv;
