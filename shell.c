@@ -1,10 +1,3 @@
-#include "shell.h"
-/**
- * main - entry point
- * @ac: counts arguments number
- * @argv: array of strings
- * Return: 0 always (success)
- */
 int main(int ac, char **argv)
 {
     char *Line = NULL;
@@ -28,7 +21,7 @@ int main(int ac, char **argv)
         if (!command)
             continue;
         if (is_builtin(command))
-            handle_built(status, command, ind, argv);
+            handle_built(&status, command, ind, argv);
         else
             status = _execute(command, argv, ind);
     }
