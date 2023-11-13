@@ -11,6 +11,8 @@ char *_strtok(char *str, char *del)
 {
     static char *lastToken = NULL;
 
+    char *tokenStart, *tokenEnd;
+
     if (str != NULL)
     {
         lastToken = str;
@@ -20,8 +22,8 @@ char *_strtok(char *str, char *del)
         return NULL;
     }
 
-    char *tokenStart = lastToken;
-    char *tokenEnd = strpbrk(tokenStart, del);
+    tokenStart = lastToken;
+    tokenEnd = strpbrk(tokenStart, del);
 
     if (tokenEnd != NULL)
     {
