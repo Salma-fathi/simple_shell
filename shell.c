@@ -9,7 +9,7 @@ int main(int ac, char **argv)
 
     while (1)
     {
-        Line = readline();
+        Line = read_line();
         if (Line == NULL)
         {
             if (isatty(STDIN_FILENO))

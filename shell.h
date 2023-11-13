@@ -21,7 +21,7 @@ void handle_built(int *status, char **command, int ind, char **argv);
 void exit_shell(char **command, int *status);
 void print_env(char **command);
 /*                    */
-char *readline(void);
+char *read_line(void);
 char **tokenzer(char *Line);
 /*                     */
 int _execute(char **command, char **argv, int ind);
