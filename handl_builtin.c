@@ -1,6 +1,6 @@
 #include "shell.h"
 
-void handle_built(int **status, char **command, int ind, char **argv)
+void handle_built(int *status, char **command, int ind, char **argv)
 {
     (void)argv;
     (void)ind;
@@ -8,10 +8,10 @@ void handle_built(int **status, char **command, int ind, char **argv)
         exit_shell(command, status);
     else if (_strcmp(command[0], "env") == 0)
         print_env(command);
-        
+
 }
 
-void exit_shell(char **command, int **status)
+void exit_shell(char **command, int *status)
 {
     int exit_val = **status;
     char *indx;
