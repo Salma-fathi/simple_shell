@@ -7,13 +7,13 @@ void handle_built(int **status, char **command, int ind, char **argv)
     if (_strcmp(command[0], "exit") == 0)
         exit_shell(command, status);
     else if (_strcmp(command[0], "env") == 0)
-        print_env(command, status);
+        print_env(command);
 }
 
 void exit_shell(char **command, int **status)
 {
     int exit_val = **status;
-    char *indax =  "cd: ";
+    char *indax;
     if (command[1])
     {
         if (is_positive_num(command[1]))

@@ -20,8 +20,6 @@ char *_strtok(char *str, char *del)
         return NULL;
     }
 
-
-    char *lastToken;
     char *tokenStart = lastToken;
     char *tokenEnd = strpbrk(tokenStart, del);
 
