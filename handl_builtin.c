@@ -11,7 +11,7 @@ void handle_built(int *status, char **command, int ind, char **argv)
 
 }
 
-void exit_shell(char **command, int **status)
+void exit_shell(char **command, int *status)
 {
     int exit_val = **status;
     char *indx;
