@@ -13,7 +13,6 @@ int is_builtin(char **command)
 
     return 0;
 }
-
 void handle_built(int *status, char **command, int ind, char **argv)
 {
     (void)argv;
