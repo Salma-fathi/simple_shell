@@ -19,7 +19,7 @@ extern char **environ;
 int is_builtin(char **command);
 void handle_built(int **status, char **command, int ind, char **argv);
 void exit_shell(char **command, int **status);
-void print_env(char **command, int **status);
+void print_env(char **command);
 /*                    */
 char *readline(void);
 char **tokenzer(char *Line);

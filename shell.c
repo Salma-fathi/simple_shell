@@ -28,7 +28,7 @@ int main(int ac, char **argv)
         if (!command)
             continue;
         if (is_builtin(command))
-            handle_built(status, command, ind, argv);
+            handle_built(&status, command, ind, argv);
         else
             status = _execute(command, argv, ind);
     }

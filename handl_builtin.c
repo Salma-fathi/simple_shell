@@ -13,7 +13,7 @@ void handle_built(int **status, char **command, int ind, char **argv)
 void exit_shell(char **command, int **status)
 {
     int exit_val = **status;
-    char *indx =  "cd: ";
+    char *indax =  "cd: ";
     if (command[1])
     {
         if (is_positive_num(command[1]))
@@ -24,12 +24,12 @@ void exit_shell(char **command, int **status)
         {
             indx = _itoa(ind);
             write(STDERR_FILENO, command[0], (size_t)_strlen(command[0]));
-            write(STDERR_FILENO, indx, (size_t)_strlen(indx));
+            write(STDERR_FILENO, indax, (size_t)_strlen(indax));
             write(STDERR_FILENO, ": ", 2);
             write(STDERR_FILENO, ": exit: Illegal number: ", 24);
             write(STDERR_FILENO, command[1], (size_t)_strlen(command[1]));
             write(STDERR_FILENO, "\n", 1);
-            free(indx);
+            free(indax);
             freearystring(command);
             return;
         }
