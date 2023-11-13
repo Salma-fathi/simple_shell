@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int is_builtin(char *command)
+int is_builtin(char **command)
 {
 	char *builtins[] = {"exit", "env","setevn" "cd", NULL};
 	int i;
