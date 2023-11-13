@@ -25,6 +25,7 @@ char *_itoa(int n);
 int is_positive_num(char *str);
 char *_strtok(char *str, char *del);
 char *get_path(char *command);
+
 /* fun string */
 char *_strchr(char *s, char c);
 int _strcmp(char *s1, char *s2);

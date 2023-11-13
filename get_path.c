@@ -1,39 +1,31 @@
 #include "shell.h"
-/**
- * get_path - gets the path of the user command
- * @command: the user input
- * Return: the path if found, otherwise NULL
- */
+
 char *get_path(char *command)
 {
-    char *env_path, *full_cmnd, *dir;
-    struct stat st;
-    env_path = _getenv("PATH");
-    if (env_path == NULL) {
+    char *env_path = _getenv("PATH");
+    if (!env_path)
         return NULL;
-    }
-    dir = _strtok(env_path, ":");
-    while (dir)
+
+    char *dir = strtok(env_path, ":");
+    while (dir != NULL)
     {
-        full_cmnd = malloc(_strlen(dir) + _strlen(command) + _strlen("/") + 1);
-        if (full_cmnd == NULL)
+        char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
+        if (!full_cmnd)
         {
-            free(env_path);
+            perror("malloc failed");
             return NULL;
         }
-        _strcpy(full_cmnd, dir);
-        _strcat(full_cmnd, "/");
-        _strcat(full_cmnd, command);
 
+        strcpy(full_cmnd, dir);
+        strcat(full_cmnd, "/");
+        strcat(full_cmnd, command);
+
+        struct stat st;
         if (stat(full_cmnd, &st) == 0)
-        {
-            free(env_path);
             return full_cmnd;
-        }
-
         free(full_cmnd);
-        dir = _strtok(NULL, ":");
+        dir = strtok(NULL, ":");
     }
-    free(env_path);
+
     return NULL;
 }
