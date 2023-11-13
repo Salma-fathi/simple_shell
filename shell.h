@@ -13,6 +13,14 @@
 #define ARR "\t\n"
 extern char **environ;
 
+
+
+
+int is_builtin(char **command);
+void handle_built(int **status, char **command, int ind, char **argv);
+void exit_shell(char **command, int **status);
+void print_env(char **command, int **status);
+/*                    */
 char *readline(void);
 char **tokenzer(char *Line);
 /*                     */
@@ -34,10 +42,7 @@ char *_strlen(char *s1);
 char *_strdup(char *str);
 char *_strcpy(char *dest, char *src);
 /*  */
-void print_env(char **command, int *status);
-void handle_built(int *status, char **command, int ind, char **argv);
-void exit_shell(char **command, int *status);
-int is_builtin(char **command);
+
 void _free(char *f1, char **f2);
 
 #endif

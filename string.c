@@ -47,20 +47,23 @@ char *_strdup(char *str)
     return d;
 }
 /**
- * _strlen - rfunctio that eturns the length of a string
- *  Description: c programm
+ * _strlen - returns the length of a string
+ * Description: C program
  * @s1: the string whose length to check
  *
- * Return: integer length of string
+ * Return: pointer to the string
  */
- char *_strlen(char *s1)
+char *_strlen(char *s1)
 {
-    size_t i = 0;
+    char *start = s1;
+    
     if (!s1)
-        return 0;
-    while (*s1++)
-        i++;
-    return i;
+        return NULL;
+    
+    while (*s1)
+        s1++;
+    
+    return start;
 }
 /**
  * _strcat - function that concatenates two strings
@@ -86,7 +89,7 @@ return (ret);
  *
  * Return: 0 if it the same
  */
-int _strcmp(char *s1, char *s2);
+int _strcmp(char *s1, char *s2)
 {
 	int i = 0;
 	while (s1[i] - s2[i] == 0 && s1[i] != '\0')
