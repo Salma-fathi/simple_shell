@@ -11,10 +11,12 @@ void handle_built(int *status, char **command, int ind, char **argv)
 
 }
 
-void exit_shell(char **command, int *status)
+void exit_shell(char **command, int **status)
 {
-    int exit_val = *status;
+    int exit_val = **status;
     char *indx;
+    int ind;
+
     if (command[1])
     {
         if (is_positive_num(command[1]))
@@ -23,6 +25,7 @@ void exit_shell(char **command, int *status)
         }
         else
         {
+            ind = 0;
             indx = _itoa(ind);
             write(STDERR_FILENO, command[0], (size_t)_strlen(command[0]));
             write(STDERR_FILENO, indx, (size_t)_strlen(indx));
@@ -38,7 +41,6 @@ void exit_shell(char **command, int *status)
     freearystring(command);
     exit(exit_val);
 }
-
 void print_env(char **command)
 {
     int i;
