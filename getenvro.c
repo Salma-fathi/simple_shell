@@ -13,7 +13,7 @@ if (var == NULL)
 
 for (i = 0; environ[i] != NULL; i++)
 {
-	tmp = _strdup(environ[i]);
+	tmp = malloc(sizeof(environ));
 	if (tmp == NULL)
 		{ return (NULL); }
 	key = _strtok(tmp, "=");
