@@ -12,10 +12,10 @@ char *_getenv(char *var)
     if (var == NULL)
         return NULL;
 
-    char *tmp = NULL;
-    char *value = NULL;
-    char *key = NULL;
-    char *env = NULL;
+    char *tmp;
+    char *value;
+    char *key;
+    char *env ;
     int i;
     for (i = 0; environ[i] != NULL; i++)
     {
