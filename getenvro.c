@@ -7,21 +7,21 @@
  */
 char *_getenv(char *var)
 {
-	char *tmp;
-	char *value;
-	char *key;
-	char *env;
     if (var == NULL)
         return NULL;
+    
     int i;
-
+    char *tmp;
+    char *value;
+    char *key;
+    char *env;
+    
     for (i = 0; environ[i] != NULL; i++)
     {
         tmp = _strdup(environ[i]);
         if (tmp == NULL)
         {
-        
-            return N
+            return NULL;
         }
 
         key = _strtok(tmp, "=");
@@ -33,7 +33,6 @@ char *_getenv(char *var)
 
             if (env == NULL)
             {
-                
                 return NULL;
             }
 
@@ -46,4 +45,3 @@ char *_getenv(char *var)
 
     return NULL;
 }
-
