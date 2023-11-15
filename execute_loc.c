@@ -27,7 +27,7 @@ int _execute(char **command, char **argv, int ind)
     else
     {
         waitpid(child, &status, 0);
-        freearystring(command);
+         freearystring(command);
         free(full_cmnd);
     }
 
