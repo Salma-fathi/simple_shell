@@ -1,22 +1,49 @@
 #include "shell.h"
-#include <string.h>
+
 /**
- * _getenv - gets environment path
- * @var: the env variable
- * Return: the path
+ * _getenv - function that gets the environment variable value
+ * @var: variable name
+ * Return: the value of the environment variable, or NULL if not found
  */
 char *_getenv(char *var)
 {
-	size_t len = _strlen(var);
-	char **env = environ;
+	char *tmp;
+	char *value;
+	char *key;
+	char *env;
+    if (var == NULL)
+        return NULL;
+    int i;
 
-	while (*env)
-	{
-		
-		if (_strcmp(*env, var) == 0 && (*env)[len] == '=')
+    for (i = 0; environ[i] != NULL; i++)
+    {
+        tmp = _strdup(environ[i]);
+        if (tmp == NULL)
+        {
+        
+            return N
+        }
 
-			return (&(*env)[len + 1]);
-		env++;
-	}
-	return (NULL);
+        key = _strtok(tmp, "=");
+        if (key != NULL && _strcmp(var, key) == 0)
+        {
+            value = _strtok(NULL, "\n");
+            env = _strdup(value);
+            free(tmp);
+
+            if (env == NULL)
+            {
+                
+                return NULL;
+            }
+
+            return env;
+        }
+
+        free(tmp);
+        tmp = NULL;
+    }
+
+    return NULL;
 }
+
