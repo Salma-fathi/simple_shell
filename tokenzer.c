@@ -43,8 +43,8 @@ char **tokenzer(char *Line)
         command[i++] = token;
         token = _strtok(NULL, ARR);
     }
+    command[i] = NULL;
     free(Line);
     free(tmp);
-    command[i] = NULL;
     return command;
 }
