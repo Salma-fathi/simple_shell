@@ -8,7 +8,7 @@
  * rev_str - Function to reverse a string
  * Description: c programm
  */
-void freearystring(char **arry)
+void free_array_string(char **arry)
 {	int i;
 
 	if (!arry)

@@ -19,7 +19,7 @@ int _execute(char **command, char **argv, int ind)
     if (!full_cmnd)
     {
         printerror(argv[0], command[0], ind);
-        freearystring(command);
+        free_array_string(command);
         return 127;
     }
 
@@ -36,7 +36,7 @@ int _execute(char **command, char **argv, int ind)
     else
     {
         waitpid(child, &status, 0);
-        freearystring(command);
+        free_array_string(command);
         free(full_cmnd);
     }
     return WEXITSTATUS(status);

@@ -25,7 +25,7 @@ char *read_line(void);
 char **tokenzer(char *Line);
 /*                     */
 int _execute(char **command, char **argv, int ind);
-void freearystring(char **arry);
+void free_array_string(char **arry);
 void printerror(char *name, char *command, int ind);
 
 void rev_str(char *str, int len);
