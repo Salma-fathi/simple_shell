@@ -1,3 +1,13 @@
+#include "shell.h"
+
+/**
+ * exec - executes the user command
+ * @arg: the array of the splited command
+ * @line: the input of the user
+ * @name: shell name
+ * @ind: index
+ * Return: the status of the operation
+ */
 int _execute(char **command, char **argv, int ind)
 {
     pid_t child;
