@@ -1,45 +1,45 @@
 #include "shell.h"
 
 /**
- * get_path - function that get the path of the command
- * Description: c programm
- * @command: command entered by user
- * Return: the path on success and 0 on failure
+ * get_path - function that gets the path of the command
+ * Description: C program
+ * @command: command entered by the user
+ * Return: the path on success and NULL on failure
  */
-char *get_path(char *cmnd, char **env)
+char *get_path(char *command)
 {
-    char **path_tokens;
-    char *full_cmnd;
+    char *env_path = getenv("PATH");
+    char *dir;
     struct stat st;
-    int i = 0;
 
-    path_tokens = tokenzer(get_env_val("PATH", env));
-    if (!path_tokens)
-        return NULL;
-
-    while (path_tokens[i])
+    if (!env_path)
     {
-        full_cmnd = malloc(sizeof(char) * (strlen(path_tokens[i]) + strlen(cmnd) + 2));
+        return NULL;
+    }
+
+    dir = strtok(env_path, ":");
+    while (dir != NULL)
+    {
+        char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
         if (!full_cmnd)
         {
-            free_tokens(path_tokens);
+            perror("malloc failed");
             return NULL;
         }
 
-        strcpy(full_cmnd, path_tokens[i]);
+        strcpy(full_cmnd, dir);
         strcat(full_cmnd, "/");
-        strcat(full_cmnd, cmnd);
+        strcat(full_cmnd, command);
 
         if (stat(full_cmnd, &st) == 0)
         {
-            free_tokens(path_tokens);
             return full_cmnd;
         }
-        
+
         free(full_cmnd);
-        i++;
+        dir = strtok(NULL, ":");
     }
 
-    free_tokens(path_tokens);
     return NULL;
 }
+
