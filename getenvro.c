@@ -1,6 +1,4 @@
 #include "shell.h"
-#include <stdlib.h>
-#include <string.h>
 
 /**
  * _getenv - function that gets the environment variable value
@@ -12,7 +10,7 @@ char *_getenv(char *var)
     if (var == NULL)
         return NULL;
 
-    char *tmp, *value,*key, *env;
+    char *tmp, *value, *key, *env;
     int i;
     for (i = 0; environ[i] != NULL; i++)
     {
