@@ -29,6 +29,7 @@ for (i = 0; environ[i] != NULL; i++)
 		free(tmp);
 		tmp = (NULL);
 	}}
+	free(tmp);
 	return (NULL);
 
 }
