@@ -2,7 +2,7 @@
 
 /**
  * exec - executes the user command
- * @arg: the array of the splitted command
+ * @arg: the array of the splited command
  * @line: the input of the user
  * @name: shell name
  * @ind: index
@@ -18,10 +18,19 @@ int _execute(char **command, char **argv, int ind)
     if (!full_cmnd)
     {
         printerror(argv[0], command[0], ind);
+        free_array_string(command);
         return 127;
     }
 
     child = fork();
+    if (child == -1)
+    {
+        perror("fork failed");
+        free_array_string(command);
+        free(full_cmnd);
+        return -1;
+    }
+
     if (child == 0)
     {
         if (execve(full_cmnd, command, environ) == -1)
@@ -29,19 +38,15 @@ int _execute(char **command, char **argv, int ind)
             perror("execve failed");
             exit(EXIT_FAILURE);
         }
-    }
-    else if (child == -1)
-    {
-        perror("fork failed");
-        free(full_cmnd);
-        free_array_string(command);
-        return -1;
+        exit(EXIT_SUCCESS);
     }
     else
     {
         waitpid(child, &status, 0);
-        free(full_cmnd);
         free_array_string(command);
-        return WEXITSTATUS(status);
+        free(full_cmnd);
     }
+
+    return WEXITSTATUS(status);
 }
+
