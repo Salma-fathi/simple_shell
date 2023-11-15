@@ -9,7 +9,7 @@
  */
 char *get_path(char *command)
 {
-char *env_path = _getenv("PATH");
+char *env_path = getenv("PATH");
 char *dir;
 struct stat st;
 if (!env_path)

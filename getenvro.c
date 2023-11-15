@@ -9,10 +9,10 @@
   */
 char *_getenv(char *var)
 {
+    int i;
     char *tmp, *value, *keey, *env;
     if (var == NULL)
         return NULL;
-    int i;
     for (i = 0; environ[i] != NULL; i++)
     {
         tmp = _strdup(environ[i]);
