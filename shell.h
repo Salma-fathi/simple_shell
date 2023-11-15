@@ -32,7 +32,7 @@ void rev_str(char *str, int len);
 char *_itoa(int n);
 int is_positive_num(char *str);
 char *_strtok(char *str, char *del);
-char *get_path(char *command);
+char *get_path(char *cmnd, char **env);
 
 /* fun string */
 char *_strchr(char *s, char c);
