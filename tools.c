@@ -1,5 +1,12 @@
 #include "shell.h"
 #include <string.h>
+/**
+ *  Function to free memory allocated for an array of strings
+ * Function to print an error message
+ * Function to convert an integer to a string
+ * Function to reverse a string
+ **/
+
 
 void freearystring(char **arry)
 {
@@ -31,7 +38,6 @@ char *_itoa(int n)
 {
     char bufr[20];
     int i = 0;
-
     if (n == 0)
         bufr[i++] = '0';
     else
@@ -41,14 +47,9 @@ char *_itoa(int n)
             bufr[i++] = (n % 10) + '0';
             n /= 10;
         }
-<<<<<<< HEAD
-    free(arry),arry =NULL;
-}
-=======
     }
     bufr[i] = '\0';
     rev_str(bufr, i);
-
     return _strdup(bufr);
 }
 void rev_str(char *str, int len)
@@ -65,8 +66,6 @@ void rev_str(char *str, int len)
         end--;
     }
 }
-
-
 int is_positive_num(char *str)
 {
     int i;
@@ -80,4 +79,3 @@ int is_positive_num(char *str)
     }
     return 1;
 }
->>>>>>> 14cbd4c6c5d0efd06dcd8107dc403cbfaa1dc80c

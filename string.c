@@ -12,13 +12,13 @@ char *_strcpy(char *dest, char *src)
 {
 int i = 0;
 if (dest == src || src == 0)
-	return (dest);
+        return (dest);
 while (src[i])
 {
-	dest[i] = src[i];
-	i++; }
-	dest[i] = 0;
-	return (dest); }
+        dest[i] = src[i];
+        i++; }
+        dest[i] = 0;
+        return (dest); }
 /**
  * *_strdup - function that duplicates a string
  * Description: c programm
@@ -55,14 +55,6 @@ char *_strdup(char *str)
  */
 char *_strlen(char *s1)
 {
-<<<<<<< HEAD
-char  *i = 0;
-if (!s1)
-	return (0);
-while (*s1++)
-	i++;
-return (i);
-=======
     char *start = s1;
     
     if (!s1)
@@ -72,7 +64,6 @@ return (i);
         s1++;
     
     return start;
->>>>>>> 14cbd4c6c5d0efd06dcd8107dc403cbfaa1dc80c
 }
 /**
  * _strcat - function that concatenates two strings
@@ -83,14 +74,12 @@ return (i);
  */
 char *_strcat(char *dest, char *src)
 {
+char *ret = dest;
 while (*dest)
-	dest++;
+        dest++;
 while (*src)
-	*dest++ = *src++;
+        *dest++ = *src++;
 *dest = *src;
-<<<<<<< HEAD
-return (dest); }
-=======
 return (ret);
 }
 /**
@@ -102,12 +91,12 @@ return (ret);
  */
 int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
-	while (s1[i] - s2[i] == 0 && s1[i] != '\0')
-	{
-		i++;
-	}
-	return (s1[i] - s2[i]);
+        int i = 0;
+        while (s1[i] - s2[i] == 0 && s1[i] != '\0')
+        {
+                i++;
+        }
+        return (s1[i] - s2[i]);
 }
 /**
  * _strchr - Returns a pointer to the first
@@ -119,18 +108,14 @@ int _strcmp(char *s1, char *s2)
  */
 char *_strchr(char *s, char c)
 {
-	int i;
+        int i;
 
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		if (s[i] == c)
-		{
-			return (&s[i]);
-		}
-	}
-	return (0);
+        for (i = 0; s[i] != '\0'; i++)
+        {
+                if (s[i] == c)
+                {
+                        return (&s[i]);
+                }
+        }
+        return (0);
 }
-
-
-
->>>>>>> 14cbd4c6c5d0efd06dcd8107dc403cbfaa1dc80c
