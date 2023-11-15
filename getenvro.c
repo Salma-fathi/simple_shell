@@ -13,10 +13,10 @@ char *_getenv(char *var)
         return NULL;
 
     int i;
-    char *tmp;
-    char *value;
-    char *key;
-    char *env;
+    char *tmp = NULL;
+    char *value = NULL;
+    char *key = NULL;
+    char *env = NULL;
 
     for (i = 0; environ[i] != NULL; i++)
     {
@@ -47,4 +47,3 @@ char *_getenv(char *var)
 
     return NULL;
 }
-
