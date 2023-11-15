@@ -5,7 +5,7 @@
  * @argv: array of string
  * Return: 0 always (success)
  */
- int main(int ac,char **argv)
+int main(int ac,char **argv)
 {
     char *Line = NULL;
     char **command =NULL;

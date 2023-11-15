@@ -18,9 +18,12 @@ int main(int ac, char **argv)
     char *token;
     int j;
     (void)ac;
-  while (1)
+
+while (1)
     {
-        printf("%s", prompt);
+	if(isatty(STDIN_FILEND))
+		write(STDOUT_FILEND," $" , 2);
+
         ch_read = getline(&linptr, &n, stdin);
         if (ch_read == -1)
         {
@@ -64,4 +67,4 @@ int main(int ac, char **argv)
     free(linptr);
 
     return (0);
-}
+main.c}

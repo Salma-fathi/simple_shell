@@ -74,7 +74,6 @@ char *_strcpy(char *dest, char *src)
  *
  * Return: 0 if it the same
  */
-
 int _strcmp(char *s1, char *s2)
 {
 	int i = 0;

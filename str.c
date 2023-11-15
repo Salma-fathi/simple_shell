@@ -9,7 +9,7 @@
  * Return: the location
  */
 
-char *_strchr(char *s, char c)
+/*char *_strchr(char *s, char c)
 {
 	int i;
 
@@ -21,7 +21,7 @@ char *_strchr(char *s, char c)
 		}
 	}
 	return (0);
-}
+}*/
 
 /**
  * *_strdup - copy of the string
@@ -29,7 +29,7 @@ char *_strchr(char *s, char c)
  * Return: pointer
  */
 
-char *_strdup(char *str)
+/*char *_strdup(char *str)
 {
 	int i, size;
 	char *m;
@@ -48,7 +48,7 @@ char *_strdup(char *str)
 	for (i = 0; i < size; i++)
 		m[i] = str[i];
 	return (m);
-}
+}*/
 
 /**
  * _strncmp - compare two strings
@@ -57,7 +57,7 @@ char *_strdup(char *str)
  * @num: size
  * Return: comparsion
  */
-int _strncmp(const char *str1, const char *str2, size_t num)
+/*int _strncmp(const char *str1, const char *str2, size_t num)
 {
 	size_t i;
 
@@ -70,4 +70,4 @@ int _strncmp(const char *str1, const char *str2, size_t num)
 	}
 
 	return (0);
-}
+}*/

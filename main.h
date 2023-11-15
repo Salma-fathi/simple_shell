@@ -18,10 +18,10 @@ struct stat {
     time_t    st_atime;   /* time of last access */
     time_t    st_mtime;   /* time of last modification */
     time_t    st_ctime;   /* time of last status change */
-} buffer;
+};
 
 void execute_command(char **argv);
-char *get_location(char *command);
+char *get_path(char *command);
 char *_strcpy(char* , char*);
 char *_strlen(char*);
 char *_strdup(char*);

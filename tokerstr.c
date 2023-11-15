@@ -5,7 +5,7 @@
  * @del: separator
  * Return: poiner to the next token
  */
- char *_strtok(char *str, char *del)
+char *_strtok(char *str, char *del)
 {
     char *str;
     char *token;

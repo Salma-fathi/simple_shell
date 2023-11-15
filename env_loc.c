@@ -1,25 +1,23 @@
 #include "main.h"
 /**
- * get_location - function that get avalue of the environment variables
+ * get_path - function that get avalue of the environment variables
  * Description: c programm
  * @command: command entered by User
  * Return: value of environment variables
  */
-char *get_location(char *command)
+char *get_path(char *command)
 {
 char *path, *path_cpy, *path_token, *fil_path;
-char *cmd_length, *dir_length;
+
 path = getenv("PATH");
 if (path)
 {
 	path_cpy = _strdup(path);
-	cmd_length = _strlen(command);
 	path_token = strtok(path_cpy, ":");
 
 while (path_token != NULL)
 {
-	dir_length = _strlen(path_token);
-	fil_path = malloc(cmd_length + dir_length + 2);
+	fil_path = malloc(sizeof(char *));
 	_strcpy(fil_path, path_token);
 	_strcat(fil_path, "/");
 	_strcat(fil_path, command);

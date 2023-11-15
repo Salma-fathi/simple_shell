@@ -7,14 +7,14 @@
  */
 void execute_command(char **argv)
 {
-char *command = 0, *loc_of_command = 0;
+char *command = 0, *path_of_command = 0;
 
 if (argv)
 {
 	command = argv[0];
-	loc_of_command = get_location(command);
+	path_of_command = get_path(command);
 
-if (execve(loc_of_command, argv, NULL) == -1)
+if (execve(path_of_command, argv, NULL) == -1)
 {
 	perror("ERROR");
 }

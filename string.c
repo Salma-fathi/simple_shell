@@ -51,7 +51,7 @@ return (d); }
  */
 char *_strlen(char *s1)
 {
-char * i = 0;
+char  *i = 0;
 if (!s1)
 	return (0);
 while (*s1++)
@@ -68,10 +68,9 @@ return (i);
  */
 char *_strcat(char *dest, char *src)
 {
-char *ret = dest;
 while (*dest)
 	dest++;
 while (*src)
 	*dest++ = *src++;
 *dest = *src;
-return (ret); }
+return (dest); }
