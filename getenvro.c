@@ -9,10 +9,9 @@
   */
 char *_getenv(char *var)
 {
+    char *tmp, *value, *keey, *env;
     if (var == NULL)
         return NULL;
-
-    char *tmp, *value,*keey, *env;
     int i;
     for (i = 0; environ[i] != NULL; i++)
     {
