@@ -15,6 +15,7 @@ char *_getenv(char *var)
     char *key;
     char *env;
     int i;
+
     for (i = 0; environ[i] != NULL; i++)
     {
         tmp = _strdup(environ[i]);
