@@ -1,4 +1,5 @@
 #include "shell.h"
+#include <string.h>
 /**
  * _getenv - gets environment path
  * @var: the env variable
