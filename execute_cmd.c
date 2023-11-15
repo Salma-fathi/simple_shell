@@ -11,12 +11,12 @@ char *command = 0, *path_of_command = 0;
 
 if (argv)
 {
-        command = argv[0];
-        path_of_command = get_path(command);
+	command = argv[0];
+	path_of_command = get_path(command);
 
 if (execve(path_of_command, argv, NULL) == -1)
 {
-        perror("ERROR");
+	perror("ERROR");
 }
 }
 
