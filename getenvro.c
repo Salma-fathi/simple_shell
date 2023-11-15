@@ -7,11 +7,11 @@
  */
 char *_getenv(char *var)
 {
-    if (var == NULL)
-        return NULL;
-
     char *tmp, *value, *key, *env;
     int i;
+    if (var == NULL)
+    { return NULL; }
+
     for (i = 0; environ[i] != NULL; i++)
     {
         tmp = _strdup(environ[i]);
