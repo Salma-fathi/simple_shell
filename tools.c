@@ -1,13 +1,12 @@
 #include "shell.h"
 #include <string.h>
+
 /**
  *  Function to free memory allocated for an array of strings
  * Function to print an error message
  * Function to convert an integer to a string
  * Function to reverse a string
  **/
-
-
 void freearystring(char **arry)
 {
     int i;

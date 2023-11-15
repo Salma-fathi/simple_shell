@@ -32,7 +32,7 @@ while (dir != NULL)
 		return (full_cmnd);
 	free(full_cmnd);
 	dir = strtok(NULL, ":");
-	dir = strtok(NULL, ":");
+	
 }
 return (NULL);
 }

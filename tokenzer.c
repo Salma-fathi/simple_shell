@@ -1,5 +1,10 @@
 #include "shell.h"
 
+/**
+ * tokenzer - tokenizes a string into an array of strings
+ * @Line: the string to tokenize
+ * Return: the array of tokens
+ */
 char **tokenzer(char *Line)
 {
     char *token;

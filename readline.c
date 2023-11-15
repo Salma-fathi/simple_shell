@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+ * read_line - read the line from user
+ *
+ * Return: return the line from user
+ */
+
 char *read_line(void)
 {
     char *line = NULL;
