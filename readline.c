@@ -1,20 +1,22 @@
 #include "shell.h"
 
-char *readline(void)
+char *read_line(void)
 {
-    char *Line = NULL;
-    size_t Buff = 0;
-    ssize_t r;
-    if(isatty(STDIN_FILEND))
-    write(STDOUT_FILEND," $" , 2);
-    r = getline(&Line ,&Buff,stdin);
-    if( n == -1)
+    char *line = NULL;
+    size_t buffer = 0;
+    ssize_t read_size;
+    if (isatty(STDIN_FILENO))
     {
-        free(Line);
-        Return(NULL);
+        write(STDOUT_FILENO, "$ ", 2);
+        fflush(stdout);
     }
-
-
-    Return(Line);
-
+    read_size = getline(&line, &buffer, stdin);
+    if (read_size <= 0)
+    {
+        free(line);
+        return NULL;
+    }
+    return line;
 }
+
+

@@ -1,19 +1,39 @@
 #include "shell.h"
+#include <string.h>
+
 /**
  * _strtok - breaks the string into tokens
- * @str: string to be breaked down
+ * @str: string to be broken down
  * @del: separator
- * Return: poiner to the next token
+ * Return: pointer to the next token
  */
 char *_strtok(char *str, char *del)
 {
-    char *str;
-    char *token;
+    static char *lastToken = NULL;
 
-    str = _strncmp("");
+    char *tokenStart, *tokenEnd;
 
-    token =_strtok(str ,"\t\n");
+    if (str != NULL)
+    {
+        lastToken = str;
+    }
+    else if (lastToken == NULL || *lastToken == '\0')
+    {
+        return NULL;
+    }
 
+    tokenStart = lastToken;
+    tokenEnd = strpbrk(tokenStart, del);
 
-    return(0);
+    if (tokenEnd != NULL)
+    {
+        *tokenEnd = '\0';
+        lastToken = tokenEnd + 1;
+    }
+    else
+    {
+        lastToken += strlen(lastToken);
+    }
+
+    return tokenStart;
 }
