@@ -36,7 +36,7 @@ char *_itoa(int n)
 	int i = 0;
 
 	if (n == 0)
-	{ bufr[i++] = '0';
+	{ bufr[i++] = '0'; }
 	else
 	{
 		while (n > 0)
