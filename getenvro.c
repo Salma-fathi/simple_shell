@@ -12,7 +12,9 @@ char *_getenv(char *var)
 
 	while (*env)
 	{
-		if (_strncmp(*env, var, len) == 0 && (*env)[len] == '=')
+		
+		if (_strcmp(*env, var) == 0 && (*env)[len] == '=')
+
 			return (&(*env)[len + 1]);
 		env++;
 	}
