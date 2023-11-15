@@ -2,7 +2,7 @@
 
 /**
  * exec - executes the user command
- * @arg: the array of the splited command
+ * @arg: the array of the splitted command
  * @line: the input of the user
  * @name: shell name
  * @ind: index
@@ -24,13 +24,11 @@ int _execute(char **command, char **argv, int ind)
     child = fork();
     if (child == 0)
     {
-        
         if (execve(full_cmnd, command, environ) == -1)
         {
             perror("execve failed");
             exit(EXIT_FAILURE);
         }
-        exit(EXIT_SUCCESS);
     }
     else if (child == -1)
     {

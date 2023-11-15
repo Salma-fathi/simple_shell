@@ -6,6 +6,12 @@
  * @command: command entered by the user
  * Return: the path on success and NULL on failure
  */
+/**
+ * get_path - function that gets the path of the command
+ * Description: C program
+ * @command: command entered by the user
+ * Return: the path on success and NULL on failure
+ */
 char *get_path(char *command)
 {
     char *env_path = getenv("PATH");
@@ -42,4 +48,3 @@ char *get_path(char *command)
 
     return NULL;
 }
-
