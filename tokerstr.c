@@ -9,31 +9,30 @@
  */
 char *_strtok(char *str, char *del)
 {
-    static char *lastToken = NULL;
+	static char *lastToken = NULL;
 
-    char *tokenStart, *tokenEnd;
+	char *tokenStart, *tokenEnd;
+	if (str != NULL)
+	{
+		lastToken = str;
+	}
+	else if (lastToken == NULL || *lastToken == '\0')
+	{
+		return (NULL);
+	}
 
-    if (str != NULL)
-    {
-        lastToken = str;
-    }
-    else if (lastToken == NULL || *lastToken == '\0')
-    {
-        return NULL;
-    }
+	tokenStart = lastToken;
+	tokenEnd = strpbrk(tokenStart, del);
 
-    tokenStart = lastToken;
-    tokenEnd = strpbrk(tokenStart, del);
+	if (tokenEnd != NULL)
+	{
+		*tokenEnd = '\0';
+		lastToken = tokenEnd + 1;
+	}
+	else
+	{
+		lastToken += strlen(lastToken);
+	}
 
-    if (tokenEnd != NULL)
-    {
-        *tokenEnd = '\0';
-        lastToken = tokenEnd + 1;
-    }
-    else
-    {
-        lastToken += strlen(lastToken);
-    }
-
-    return tokenStart;
+	return (tokenStart);
 }
