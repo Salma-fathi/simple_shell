@@ -31,8 +31,6 @@ char *get_path(char *command)
             return NULL;
         }
 
-        snprintf(full_cmnd, len_dir + len_command + 2, "%s/%s", dir, command);
-
         if (stat(full_cmnd, &st) == 0)
         {
             return full_cmnd;
