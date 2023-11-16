@@ -51,19 +51,21 @@ char *_strdup(char *str)
  * Description: C program
  * @s1: the string whose length to check
  *
- * Return: pointer to the string
+ * Return: length of the string
  */
-char *_strlen(char *s1)
+size_t _strlen(char *s1)
 {
-    char *start = s1;
-    
     if (!s1)
-        return NULL;
-    
+        return 0;
+
+    size_t length = 0;
     while (*s1)
+    {
+        length++;
         s1++;
-    
-    return start;
+    }
+
+    return length;
 }
 /**
  * _strcat - function that concatenates two strings
