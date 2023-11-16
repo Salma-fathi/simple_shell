@@ -1,160 +1,158 @@
 #include "shell.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: the string whose length to check
+ * _strchr - Returns a pointer to the first
+ *       occurrence of the character
+ * @s: string to search
+ * @c: character to be searched for
  *
- * Return: integer length of string
+ * Return: the location
  */
-int _strlen(char *s)
+
+char *_strchr(char *s, char c)
 {
-	int i = 0;
+	int i;
 
-	if (!s)
-		return (0);
-
-	while (*s++)
-		i++;
-	return (i);
-}
-
-/**
- * _strcmp - performs lexicogarphic comparison of two strangs.
- * @s1: the first strang
- * @s2: the second strang
- *
- * Return: negative if s1 < s2, positive if s1 > s2, zero if s1 == s2
- */
-int _strcmp(char *s1, char *s2)
-{
-	while (*s1 && *s2)
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (*s1 != *s2)
-			return (*s1 - *s2);
-		s1++;
-		s2++;
+		if (s[i] == c)
+		{
+			return (&s[i]);
+		}
 	}
-	if (*s1 == *s2)
-		return (0);
-	else
-		return (*s1 < *s2 ? -1 : 1);
+	return (0);
 }
 
 /**
- * starts_with - checks if needle starts with haystack
- * @haystack: string to search
- * @needle: the substring to find
- *
- * Return: address of next char of haystack or NULL
+ * *_strdup - copy of the string
+ * @str: input
+ * Return: pointer
  */
-char *starts_with(const char *haystack, const char *needle)
+
+char *_strdup(char *str)
 {
-	while (*needle)
-		if (*needle++ != *haystack++)
-			return (NULL);
-	return ((char *)haystack);
+	int i, size;
+	char *m;
+
+	if (str == NULL)
+		return (NULL);
+
+	for (size = 0; str[size] != '\0'; size++)
+		;
+	size++;
+	m = malloc(size * sizeof(*str));
+
+	if (m == 0)
+		return (NULL);
+
+	for (i = 0; i < size; i++)
+		m[i] = str[i];
+	return (m);
 }
 
 /**
- * _strcat - concatenates two strings
- * @dest: the destination buffer
- * @src: the source buffer
+ * _strncmp - compare two strings
+ * @str1: first string
+ * @str2: second string
+ * @num: size
+ * Return: comparsion
+ */
+int _strncmp(const char *str1, const char *str2, size_t num)
+{
+	size_t i;
+
+	for (i = 0; i < num; i++)
+	{
+		if (str1[i] == '\0' || str1[i] != str2[i])
+		{
+			return (str1[i] - str2[i]);
+		}
+	}
+
+	return (0);
+}
+/**
+ *  _strlen - print length of string
+ *  @str: the string
  *
- * Return: pointer to destination buffer
+ *  Return: length
+ */
+int _strlen(char *str)
+{
+	int len = 0, i;
+
+	for (i = 0; str[i] != '\0'; i++)
+		len++;
+	return (len);
+}
+
+/**
+ * _strcat - concatenates 2 strings
+ * @dest: string to be appended to
+ * @src: string to append
+ *
+ * Return: concatenated string
  */
 char *_strcat(char *dest, char *src)
 {
-	char *ret = dest;
+	int i = 0, j;
 
-	while (*dest)
-		dest++;
-	while (*src)
-		*dest++ = *src++;
-	*dest = *src;
-	return (ret);
-}
-/**
- * _strcpy - copies a string
- * @dest: the destination
- * @src: the source
- *
- * Return: pointer to destination
- */
-char *_strcpy(char *dest, char *src)
-{
-	int i = 0;
-
-	if (dest == src || src == 0)
-		return (dest);
-	while (src[i])
+	while (dest[i] != '\0')
 	{
-		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = 0;
+	for (j = 0; src[j] != '\0'; j++)
+	{
+		dest[i + j] = src[j];
+	}
+	dest[i + j] = '\0';
 	return (dest);
 }
 
 /**
- * _strdup - duplicates a string
- * @str: the string to duplicate
+ * *_strcpy - copies the string pointed to by src
+ * including the terminating null byte (\0)
+ * to the buffer pointed to by dest
+ * @dest: pointer to the buffer in which we copy the string
+ * @src: string to be copied
  *
- * Return: pointer to the duplicated string
+ * Return: return the copied string
  */
-char *_strdup(const char *str)
+char *_strcpy(char *dest, char *src)
 {
-	int length = 0;
-	char *ret;
+	int length, i;
 
-	if (str == NULL)
-		return (NULL);
-	while (*str++)
+	length = 0;
+
+	while (src[length] != '\0')
+	{
 		length++;
-	ret = malloc(sizeof(char) * (length + 1));
-	if (!ret)
-		return (NULL);
-	for (length++; length--;)
-		ret[length] = *--str;
-	return (ret);
+	}
+
+	for (i = 0; i < length; i++)
+	{
+		dest[i] = src[i];
+	}
+	dest[i] = '\0';
+
+	return (dest);
 }
 
 /**
- *_puts - prints an input string
- *@str: the string to be printed
+ * _strcmp - compares 2 strings
+ * @s1: first string
+ * @s2: second string
  *
- * Return: Nothing
+ * Return: 0 if it the same
  */
-void _puts(char *str)
+
+int _strcmp(char *s1, char *s2)
 {
 	int i = 0;
 
-	if (!str)
-		return;
-	while (str[i] != '\0')
+	while (s1[i] - s2[i] == 0 && s1[i] != '\0')
 	{
-		_putchar(str[i]);
 		i++;
 	}
-}
-
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	static int i;
-	static char buf[WRITE_BUF_SIZE];
-
-	if (c == BUF_FLUSH || i >= WRITE_BUF_SIZE)
-	{
-		write(1, buf, i);
-		i = 0;
-	}
-	if (c != BUF_FLUSH)
-		buf[i++] = c;
-	return (1);
+	return (s1[i] - s2[i]);
 }

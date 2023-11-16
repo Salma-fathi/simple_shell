@@ -2,43 +2,48 @@
 
 /**
  * main - entry point
- * @ac: arg count
- * @av: arg vector
- *
- * Return: 0 on success, 1 on error
+ * @ac: counts arg number
+ * @argv: array of string
+ * Return: 0 in success and -1 in fail
  */
-int main(int ac, char **av)
+int main(int ac, char **argv)
 {
-	info_t info[] = { INFO_INIT };
-	int fd = 2;
+	char *line = NULL, **tokens = NULL, **tokenizer = NULL;
+	int status = 0, ind = 0, i;
+	(void) ac;
 
-	asm ("mov %1, %0\n\t"
-		"add $3, %0"
-		: "=r" (fd)
-	    : "r" (fd));
-
-	if (ac == 2)
+	while (1)
 	{
-		fd = open(av[1], O_RDONLY);
-		if (fd == -1)
+		line = read_line();
+		if (line == NULL)
+			return (status);
+		comment(line);
+		if (is_empty(line))
 		{
-			if (errno == EACCES)
-				exit(126);
-			if (errno == ENOENT)
-			{
-				_eputs(av[0]);
-				_eputs(": 0: Can't open ");
-				_eputs(av[1]);
-				_eputchar('\n');
-				_eputchar(BUF_FLUSH);
-				exit(127);
-			}
-			return (EXIT_FAILURE);
+			free(line), status = 0;
+			continue;
 		}
-		info->readfd = fd;
+		ind++;
+		tokenizer = spilt_line(line, ";");
+		if (tokenizer == NULL)
+			continue;
+		for (i = 0; tokenizer[i] != NULL; i++)
+		{
+			tokens = spilt_line(tokenizer[i], " \n\t");
+			if (tokens == NULL)
+			{
+				free(tokens);
+				continue;
+			}
+			if (check_built(line))
+			{
+				handle_built(tokens, status, line, ind, argv, tokenizer);
+				continue;
+			}
+			status = exec(tokens, line, ind, argv);
+			free(tokens);
+		}
+		free(tokenizer), free(line);
 	}
-	populate_env_list(info);
-	read_history(info);
-	hsh(info, av);
-	return (EXIT_SUCCESS);
+	return (status);
 }
