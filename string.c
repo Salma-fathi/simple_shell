@@ -55,10 +55,11 @@ char *_strdup(char *str)
  */
 size_t _strlen(char *s1)
 {
+    size_t length = 0;
+
     if (!s1)
         return 0;
 
-    size_t length = 0;
     while (*s1)
     {
         length++;
@@ -67,6 +68,7 @@ size_t _strlen(char *s1)
 
     return length;
 }
+
 /**
  * _strcat - function that concatenates two strings
  * Description: c programm
