@@ -1,74 +1,160 @@
 #include "shell.h"
-#include <string.h>
 
 /**
- *  printerror - Function to free memory allocated for an array of strings
- * freearystring - Function to print an error message
- * _itoa - Function to convert an integer to a string
- * rev_str - Function to reverse a string
- * Description: c programm
+ * hsh - main shell loop
+ * @info: the parameter & return info struct
+ * @av: the argument vector from main()
+ *
+ * Return: 0 on success, 1 on error, or error code
  */
-void free_array_string(char **arry)
+int hsh(info_t *info, char **av)
 {
-    int i;
+	ssize_t r = 0;
+	int builtin_ret = 0;
 
-    if (!arry)
-    {
-        return;
-    }
-    for (i = 0; arry[i]; i++)
-    {
-        free(arry[i]);
-        arry[i] = NULL;
-    }
-    free(arry);
+	while (r != -1 && builtin_ret != -2)
+	{
+		clear_info(info);
+		if (interactive(info))
+			_puts("$ ");
+		_eputchar(BUF_FLUSH);
+		r = get_input(info);
+		if (r != -1)
+		{
+			set_info(info, av);
+			builtin_ret = find_builtin(info);
+			if (builtin_ret == -1)
+				find_cmd(info);
+		}
+		else if (interactive(info))
+			_putchar('\n');
+		free_info(info, 0);
+	}
+	write_history(info);
+	free_info(info, 1);
+	if (!interactive(info) && info->status)
+		exit(info->status);
+	if (builtin_ret == -2)
+	{
+		if (info->err_num == -1)
+			exit(info->status);
+		exit(info->err_num);
+	}
+	return (builtin_ret);
 }
-void printerror(char *name, char *command, int ind)
+
+/**
+ * find_builtin - finds a builtin command
+ * @info: the parameter & return info struct
+ *
+ * Return: -1 if builtin not found,
+ *			0 if builtin executed successfully,
+ *			1 if builtin found but not successful,
+ *			-2 if builtin signals exit()
+ */
+int find_builtin(info_t *info)
 {
-	char *id, msg[] = ": not found\n";
+	int i, built_in_ret = -1;
+	builtin_table builtintbl[] = {
+		{"exit", _myexit},
+		{"env", _myenv},
+		{"help", _myhelp},
+		{"history", _myhistory},
+		{"setenv", _mysetenv},
+		{"unsetenv", _myunsetenv},
+		{"cd", _mycd},
+		{"alias", _myalias},
+		{NULL, NULL}
+	};
 
-	id = _itoa(ind);
-	write(STDERR_FILENO, name, strlen(name));
-	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, id, strlen(id));
-	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, command, strlen(command));
-	write(STDERR_FILENO, msg, strlen(msg));
-	free(id); }
-char *_itoa(int n)
-{	char bufr[20];
-	int i = 0;
+	for (i = 0; builtintbl[i].type; i++)
+		if (_strcmp(info->argv[0], builtintbl[i].type) == 0)
+		{
+			info->line_count++;
+			built_in_ret = builtintbl[i].func(info);
+			break;
+		}
+	return (built_in_ret);
+}
 
-	if (n == 0)
-	{ bufr[i++] = '0'; }
+/**
+ * find_cmd - finds a command in PATH
+ * @info: the parameter & return info struct
+ *
+ * Return: void
+ */
+void find_cmd(info_t *info)
+{
+	char *path = NULL;
+	int i, k;
+
+	info->path = info->argv[0];
+	if (info->linecount_flag == 1)
+	{
+		info->line_count++;
+		info->linecount_flag = 0;
+	}
+	for (i = 0, k = 0; info->arg[i]; i++)
+		if (!is_delim(info->arg[i], " \t\n"))
+			k++;
+	if (!k)
+		return;
+
+	path = find_path(info, _getenv(info, "PATH="), info->argv[0]);
+	if (path)
+	{
+		info->path = path;
+		fork_cmd(info);
+	}
 	else
 	{
-		while (n > 0)
+		if ((interactive(info) || _getenv(info, "PATH=")
+			|| info->argv[0][0] == '/') && is_cmd(info, info->argv[0]))
+			fork_cmd(info);
+		else if (*(info->arg) != '\n')
 		{
-		bufr[i++] = (n % 10) + '0';
-		n /= 10; }}
-	bufr[i] = '\0';
-	rev_str(bufr, i);
-	return (_strdup(bufr)); }
-void rev_str(char *str, int len)
-{	int begin = 0, end = len - 1;
-	char copy;
+			info->status = 127;
+			print_error(info, "not found\n");
+		}
+	}
+}
 
-	while (begin < end)
-	{
-		copy = str[begin];
-		str[begin] = str[end];
-		str[end] = copy;
-		begin++;
-		end--; }}
-int is_positive_num(char *str)
+/**
+ * fork_cmd - forks a an exec thread to run cmd
+ * @info: the parameter & return info struct
+ *
+ * Return: void
+ */
+void fork_cmd(info_t *info)
 {
-	int i;
+	pid_t child_pid;
 
-	if (!str)
-	{ return (0); }
-	for (i = 0 ; str[i]; i++)
+	child_pid = fork();
+	if (child_pid == -1)
 	{
-		if (str[i] < '0' || str[i] > '9')
-		{ return (0); }}
-	return (1); }
+		/* TODO: PUT ERROR FUNCTION */
+		perror("Error:");
+		return;
+	}
+	if (child_pid == 0)
+	{
+		if (execve(info->path, info->argv, get_environ(info)) == -1)
+		{
+			free_info(info, 1);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
+		}
+		/* TODO: PUT ERROR FUNCTION */
+	}
+	else
+	{
+		wait(&(info->status));
+		if (WIFEXITED(info->status))
+		{
+			info->status = WEXITSTATUS(info->status);
+			if (info->status == 126)
+				print_error(info, "Permission denied\n");
+		}
+	}
+}

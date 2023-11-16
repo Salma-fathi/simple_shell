@@ -1,105 +1,115 @@
 #include "shell.h"
+
 /**
- * is_builtin - function that determinr if the command built in or not
- * Description: c programm
- * @command: command entered by user
- * Return: on success 1  on failure 0
+ * _myhistory - displays the history list, one command by line, preceded
+ *              with line numbers, starting at 0.
+ * @info: Structure containing potential arguments. Used to maintain
+ *        constant function prototype.
+ *  Return: Always 0
  */
-
-int is_builtin(char **command)
+int _myhistory(info_t *info)
 {
-    int i;  /*Declare the variable at the beginning*/
-	char *builtins[] = {"exit", "env", "setenv", "cd", NULL};
-	
-    if (!command || !command[0])
-    {
-        return 0;
-    }
-    for (i = 0; builtins[i]; i++)
-    {
-        if (_strcmp(command[0], builtins[i]) == 0)
-        {
-            return (1);
-        }
-    }
-
-    return (0);
-}
-/**
- * handle_built - function that adds the built in command
- * Description: c programm
- * @command: command entered by user
- * @status: status of the command
- * @ind: the index
- * @argv: argument vector
- * Return: nothing
- */
-void handle_built(int *status, char **command, int ind, char **argv)
-{
-	(void)argv;
-	(void)ind;
-	if (_strcmp(command[0], "exit") == 0)
-		{ exit_shell(command, status); }
-	else if (_strcmp(command[0], "env") == 0)
-		{ print_env(command); }
-
+	print_list(info->history);
+	return (0);
 }
 
 /**
- * exit_shell - function that exits the shell
- * Description: C program
- * @command: command entered by the user
- * @status: status of the command
- * Return: nothing
+ * unset_alias - sets alias to string
+ * @info: parameter struct
+ * @str: the string alias
+ *
+ * Return: Always 0 on success, 1 on error
  */
-void exit_shell(char **command, int *status)
+int unset_alias(info_t *info, char *str)
 {
-    int exit_val = *status;
-    char *indx = NULL;
-    int ind;
+	char *p, c;
+	int ret;
 
-    if (command[1])
-    {
-        if (is_positive_num(command[1]))
-        {
-            exit_val = atoi(command[1]);
-        }
-        else
-        {
-            ind = 0;
-            indx = _itoa(ind);
-            write(STDERR_FILENO, command[0], (size_t)_strlen(command[0]));
-            write(STDERR_FILENO, indx, (size_t)_strlen(indx));
-            write(STDERR_FILENO, ": ", 2);
-            write(STDERR_FILENO, ": exit: Illegal number: ", 24);
-            write(STDERR_FILENO, command[1], (size_t)_strlen(command[1]));
-            write(STDERR_FILENO, "\n", 1);
-
-            free(indx);
-            free_array_string(command);
-            return;
-        }
-    }
-
-    free_array_string(command);
-    free(indx);
-    exit(exit_val);
+	p = _strchr(str, '=');
+	if (!p)
+		return (1);
+	c = *p;
+	*p = 0;
+	ret = delete_node_at_index(&(info->alias),
+		get_node_index(info->alias, node_starts_with(info->alias, str, -1)));
+	*p = c;
+	return (ret);
 }
 
 /**
- * print_env - function that print the environment
- * Description: c programm
- * @command: command entered by user
- * Return: nothing
+ * set_alias - sets alias to string
+ * @info: parameter struct
+ * @str: the string alias
+ *
+ * Return: Always 0 on success, 1 on error
  */
-void print_env(char **command)
+int set_alias(info_t *info, char *str)
 {
-int i;
-for (i = 0; environ[i]; i++)
-{
-	write(STDOUT_FILENO, environ[i], (size_t)_strlen(environ[i]));
-	write(STDOUT_FILENO, "\n", 1);
-}
-free_array_string(command);
+	char *p;
 
+	p = _strchr(str, '=');
+	if (!p)
+		return (1);
+	if (!*++p)
+		return (unset_alias(info, str));
+
+	unset_alias(info, str);
+	return (add_node_end(&(info->alias), str, 0) == NULL);
+}
+
+/**
+ * print_alias - prints an alias string
+ * @node: the alias node
+ *
+ * Return: Always 0 on success, 1 on error
+ */
+int print_alias(list_t *node)
+{
+	char *p = NULL, *a = NULL;
+
+	if (node)
+	{
+		p = _strchr(node->str, '=');
+		for (a = node->str; a <= p; a++)
+			_putchar(*a);
+		_putchar('\'');
+		_puts(p + 1);
+		_puts("'\n");
+		return (0);
+	}
+	return (1);
+}
+
+/**
+ * _myalias - mimics the alias builtin (man alias)
+ * @info: Structure containing potential arguments. Used to maintain
+ *          constant function prototype.
+ *  Return: Always 0
+ */
+int _myalias(info_t *info)
+{
+	int i = 0;
+	char *p = NULL;
+	list_t *node = NULL;
+
+	if (info->argc == 1)
+	{
+		node = info->alias;
+		while (node)
+		{
+			print_alias(node);
+			node = node->next;
+		}
+		return (0);
+	}
+	for (i = 1; info->argv[i]; i++)
+	{
+		p = _strchr(info->argv[i], '=');
+		if (p)
+			set_alias(info, info->argv[i]);
+		else
+			print_alias(node_starts_with(info->alias, info->argv[i], '='));
+	}
+
+	return (0);
 }

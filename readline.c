@@ -1,25 +1,62 @@
 #include "shell.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- * read_line - read the line from user
- * Description: c program
- * Return: return the line from user
+ **_memset - fills memory with a constant byte
+ *@s: the pointer to the memory area
+ *@b: the byte to fill *s with
+ *@n: the amount of bytes to be filled
+ *Return: (s) a pointer to the memory area s
  */
-char *read_line(void)
+char *_memset(char *s, char b, unsigned int n)
 {
-    char *line = NULL;
-    size_t buffer_size = 0;
-    ssize_t read_size;
+	unsigned int i;
 
-    read_size = getline(&line, &buffer_size, stdin);
-    if (read_size <= 0)
-    {
-        free(line);
-        return NULL;
-    }
-
-    return line;
+	for (i = 0; i < n; i++)
+		s[i] = b;
+	return (s);
 }
 
+/**
+ * ffree - frees a string of strings
+ * @pp: string of strings
+ */
+void ffree(char **pp)
+{
+	char **a = pp;
+
+	if (!pp)
+		return;
+	while (*pp)
+		free(*pp++);
+	free(a);
+}
+
+/**
+ * _realloc - reallocates a block of memory
+ * @ptr: pointer to previous malloc'ated block
+ * @old_size: byte size of previous block
+ * @new_size: byte size of new block
+ *
+ * Return: pointer to da ol'block nameen.
+ */
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+{
+	char *p;
+
+	if (!ptr)
+		return (malloc(new_size));
+	if (!new_size)
+		return (free(ptr), NULL);
+	if (new_size == old_size)
+		return (ptr);
+
+	p = malloc(new_size);
+	if (!p)
+		return (NULL);
+
+	old_size = old_size < new_size ? old_size : new_size;
+	while (old_size--)
+		p[old_size] = ((char *)ptr)[old_size];
+	free(ptr);
+	return (p);
+}
