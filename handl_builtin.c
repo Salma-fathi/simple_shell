@@ -25,8 +25,6 @@ int is_builtin(char **command)
 
     return (0);
 }
-
-
 /**
  * handle_built - function that adds the built in command
  * Description: c programm
@@ -48,42 +46,44 @@ void handle_built(int *status, char **command, int ind, char **argv)
 }
 
 /**
- * exit_shell - function that exit shell
- * Description: c programm
- * @command: command entered by user
+ * exit_shell - function that exits the shell
+ * Description: C program
+ * @command: command entered by the user
  * @status: status of the command
  * Return: nothing
  */
 void exit_shell(char **command, int *status)
 {
-	int exit_val = *status;
-	char *indx;
-	int ind;
+    int exit_val = *status;
+    char *indx;
+    int ind;
 
-if (command[1])
-{
-	if (is_positive_num(command[1]))
-	{
-		exit_val = atoi(command[1]);
-	}
-	else
-	{
-		ind = 0;
-		indx = _itoa(ind);
-		write(STDERR_FILENO, command[0], (size_t)_strlen(command[0]));
-		write(STDERR_FILENO, indx, (size_t)_strlen(indx));
-		write(STDERR_FILENO, ": ", 2);
-		write(STDERR_FILENO, ": exit: Illegal number: ", 24);
-		write(STDERR_FILENO, command[1], (size_t)_strlen(command[1]));
+    if (command[1])
+    {
+        if (is_positive_num(command[1]))
+        {
+            exit_val = atoi(command[1]);
+        }
+        else
+        {
+            ind = 0;
+            indx = _itoa(ind);
+            write(STDERR_FILENO, command[0], (size_t)_strlen(command[0]));
+            write(STDERR_FILENO, indx, (size_t)_strlen(indx));
+            write(STDERR_FILENO, ": ", 2);
+            write(STDERR_FILENO, ": exit: Illegal number: ", 24);
+            write(STDERR_FILENO, command[1], (size_t)_strlen(command[1]));
+            write(STDERR_FILENO, "\n", 1);
 
-		write(STDERR_FILENO, "\n", 1);
-		free(indx);
-		free_array_string(command);
-		return;
-	}
-}
-	free_array_string(command);
-	exit(exit_val);
+            free(indx);
+            free_array_string(command);
+            return;
+        }
+    }
+
+    free_array_string(command);
+    free(indx); // Free the memory allocated by _itoa
+    exit(exit_val);
 }
 
 /**

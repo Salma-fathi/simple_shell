@@ -6,13 +6,12 @@
  * @argv: array of string
  * Return: 0 always (success)
  */
-
 int main(int ac, char **argv)
 {
     char *Line = NULL;
     char **command = NULL;
     int status = 0, ind = 0;
-    (void) ac;
+    (void)ac;
 
     while (1)
     {
@@ -21,15 +20,21 @@ int main(int ac, char **argv)
         {
             if (isatty(STDIN_FILENO))
                 write(STDOUT_FILENO, "\n", 1);
+            free(Line);
             return status;
         }
         ind++;
         command = tokenzer(Line);
         if (!command)
+        {
+            free(Line);
             continue;
+        }
         if (is_builtin(command))
             handle_built(&status, command, ind, argv);
         else
             status = _execute(command, argv, ind);
+
+        free(Line);
     }
 }
