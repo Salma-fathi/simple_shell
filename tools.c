@@ -8,17 +8,21 @@
  * rev_str - Function to reverse a string
  * Description: c programm
  */
-void freearystring(char **arry)
-{	int i;
+void free_array_string(char **arry)
+{
+    int i;
 
-	if (!arry)
-	{ return; }
-	for (i = 0; arry[i]; i++)
-	{
-		free(arry[i]);
-		arry[i] = NULL; }
-	free(arry);
-	arry = NULL; }
+    if (!arry)
+    {
+        return;
+    }
+    for (i = 0; arry[i]; i++)
+    {
+        free(arry[i]);
+        arry[i] = NULL;
+    }
+    free(arry);
+}
 void printerror(char *name, char *command, int ind)
 {
 	char *id, msg[] = ": not found\n";

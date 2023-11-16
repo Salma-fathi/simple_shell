@@ -7,7 +7,7 @@
  */
 int is_builtin(char **command)
 {
-	char *builtins[] = {"exit", "env", "setevn", "cd", NULL};
+	char *builtins[] = {"exit", "env", "setenv", "cd", NULL};
 	int i;
 for (i = 0; builtins[i]; i++)
 {
@@ -69,11 +69,11 @@ if (command[1])
 
 		write(STDERR_FILENO, "\n", 1);
 		free(indx);
-		freearystring(command);
+		free_array_string(command);
 		return;
 	}
 }
-	freearystring(command);
+	free_array_string(command);
 	exit(exit_val);
 }
 
@@ -91,5 +91,6 @@ for (i = 0; environ[i]; i++)
 	write(STDOUT_FILENO, environ[i], (size_t)_strlen(environ[i]));
 	write(STDOUT_FILENO, "\n", 1);
 }
-freearystring(command);
+free_array_string(command);
+
 }
