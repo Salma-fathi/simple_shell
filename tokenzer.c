@@ -20,7 +20,6 @@ char **tokenzer(char *Line)
     token = _strtok(tmp, ARR);
     if (!token)
     {
-        free(Line);
         free(tmp);
         return NULL;
     }
@@ -32,7 +31,6 @@ char **tokenzer(char *Line)
     command = malloc((i + 1) * sizeof(char *));
     if (!command)
     {
-        free(Line);
         free(tmp);
         return NULL;
     }
@@ -44,7 +42,6 @@ char **tokenzer(char *Line)
         token = _strtok(NULL, ARR);
     }
     command[i] = NULL;
-    free(Line);
     free(tmp);
     return command;
 }

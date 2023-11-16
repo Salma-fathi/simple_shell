@@ -18,18 +18,18 @@ char *get_path(char *command)
     }
 
     dir = strtok(env_path, ":");
-
     while (dir != NULL)
     {
-        size_t len_dir = strlen(dir);
-        size_t len_command = strlen(command);
-        char *full_cmnd = malloc(len_dir + len_command + 2);
-
+        char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
         if (!full_cmnd)
         {
             perror("malloc failed");
             return NULL;
         }
+
+        strcpy(full_cmnd, dir);
+        strcat(full_cmnd, "/");
+        strcat(full_cmnd, command);
 
         if (stat(full_cmnd, &st) == 0)
         {
@@ -39,6 +39,7 @@ char *get_path(char *command)
         free(full_cmnd);
         dir = strtok(NULL, ":");
     }
-
     return NULL;
 }
+
+

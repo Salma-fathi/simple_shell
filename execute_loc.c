@@ -39,15 +39,17 @@ int _execute(char **command, char **argv, int ind)
             free(full_cmnd);
             exit(EXIT_FAILURE);
         }
-        exit(EXIT_SUCCESS);
     }
     else
     {
         waitpid(child, &status, 0);
     }
-
-    free_array_string(command);
     free(full_cmnd);
+    if (child == 0)
+    {
+        free_array_string(command);
+        exit(EXIT_SUCCESS);
+    }
 
     return WEXITSTATUS(status);
 }
