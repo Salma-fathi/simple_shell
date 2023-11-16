@@ -5,6 +5,7 @@
  * @command: command entered by user
  * Return: on success 1  on failure 0
  */
+
 int is_builtin(char **command)
 {
     if (!command || !command[0])
@@ -12,8 +13,8 @@ int is_builtin(char **command)
         return 0;
     }
 
-    char *builtins[] = {"exit", "env", "setenv", "cd", NULL};
     int i;
+    char *builtins[] = {"exit", "env", "setenv", "cd", NULL};
 
     for (i = 0; builtins[i]; i++)
     {
@@ -55,7 +56,7 @@ void handle_built(int *status, char **command, int ind, char **argv)
 void exit_shell(char **command, int *status)
 {
     int exit_val = *status;
-    char *indx;
+    char *indx = NULL;
     int ind;
 
     if (command[1])
@@ -82,7 +83,7 @@ void exit_shell(char **command, int *status)
     }
 
     free_array_string(command);
-    free(indx); // Free the memory allocated by _itoa
+    free(indx);
     exit(exit_val);
 }
 

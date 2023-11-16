@@ -87,14 +87,14 @@ return (ret);
  * @s1: first string
  * @s2: second string
  *
- * Return: 0 if it the same
+ * Return: 0 if it is the same
  */
-int _strcmp(char *s1,char *s2)
+int _strcmp(char *s1, char *s2)
 {
     if (s1 == NULL || s2 == NULL)
     {
-        // Handle the error or return an appropriate value
-        return -1; // or any other error code
+        
+        return -1;
     }
 
     int i = 0;
@@ -106,6 +106,7 @@ int _strcmp(char *s1,char *s2)
 
     return (s1[i] - s2[i]);
 }
+
 /**
  * _strchr - Returns a pointer to the first
  *       occurrence of the character
