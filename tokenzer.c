@@ -16,23 +16,29 @@ char **tokenzer(char *Line)
         return NULL;
 
     tmp = _strdup(Line);
-
     token = _strtok(tmp, ARR);
-    if (!token)
+    while (token)
+    {
+        i++;
+        token = _strtok(NULL, ARR);
+    }
+    command = malloc((i + 1) * sizeof(char *));
+    if (!command)
     {
         free(tmp);
         return NULL;
     }
+    free(tmp);
+    tmp = _strdup(Line);
+    token = _strtok(tmp, ARR);
+    i = 0;
     while (token)
     {
         command[i++] = _strdup(token);
         token = _strtok(NULL, ARR);
     }
     command[i] = NULL;
-    for (int j = 0; j < i; j++)
-        free(command[j]);
-    free(command);
     free(tmp);
-
     return command;
 }
+

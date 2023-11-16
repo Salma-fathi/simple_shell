@@ -13,15 +13,13 @@ char *read_line(void)
     size_t buffer_size = 0;
     ssize_t read_size;
 
-    read_size = getline(&line, &buffer_size, stdin);
-    if (read_size == -1) {
+    read_size = getline(&line, &buffer, stdin);
+    if (read_size <= 0)
+    {
         free(line);
         return NULL;
     }
-    if (line[read_size - 1] == '\n') {
-        line[read_size - 1] = '\0';
-    }
-
+    free(line);
     return line;
 }
 
