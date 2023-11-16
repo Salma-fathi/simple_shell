@@ -91,13 +91,20 @@ return (ret);
  */
 int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
+    if (s1 == NULL || s2 == NULL)
+    {
+        // Handle the error or return an appropriate value
+        return -1; // or any other error code
+    }
 
-	while (s1[i] - s2[i] == 0 && s1[i] != '\0')
-	{
-		i++;
-	}
-	return (s1[i] - s2[i]);
+    int i = 0;
+
+    while (s1[i] != '\0' && s1[i] == s2[i])
+    {
+        i++;
+    }
+
+    return (s1[i] - s2[i]);
 }
 /**
  * _strchr - Returns a pointer to the first
