@@ -1,5 +1,7 @@
 #include "shell.h"
 #include <stdio.h>
+#include <stdlib.h>
+
 /**
  * read_line - read the line from user
  * Description: c programm
@@ -8,20 +10,18 @@
 char *read_line(void)
 {
     char *line = NULL;
-    size_t buffer = 0;
+    size_t buffer_size = 0;
     ssize_t read_size;
 
-    if (isatty(STDIN_FILENO))
-    {
-        write(STDOUT_FILENO, "$ ", 2);
-        fflush(stdout);
-    }
-    read_size = getline(&line, &buffer, stdin);
-    if (read_size <= 0)
-    {
+    read_size = getline(&line, &buffer_size, stdin);
+    if (read_size == -1) {
         free(line);
         return NULL;
     }
+    if (line[read_size - 1] == '\n') {
+        line[read_size - 1] = '\0';
+    }
+
     return line;
 }
 
