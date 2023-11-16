@@ -43,7 +43,7 @@ int _execute(char **command, char **argv, int ind)
     else
     {
         waitpid(child, &status, 0);
-        free(full_cmnd);  // Free full_cmnd only in the parent process
+        free(full_cmnd);
     }
 
     if (child == 0)
