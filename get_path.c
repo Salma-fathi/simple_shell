@@ -9,25 +9,36 @@
 
 char *get_path(char *command)
 {
-	char *token;
-	char *full_path = NULL;
-	token = _strtok(path, ":");
-	while (token != NULL)
-	{
-		full_path = malloc(_strlen(token) + _strlen(command) + 2);
-		if (full_path == NULL)
-			return (NULL);
+    char *env_path = getenv("PATH");
+    char *dir;
+    struct stat st;
 
-		_strcpy(full_path, token);
-		_strcat(full_path, "/");
-		_strcat(full_path, command);
+    if (!env_path)
+    {
+        return NULL;
+    }
+    dir = strtok(strdup(env_path), ":");
+    while (dir != NULL)
+    {
+        char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
+        if (!full_cmnd)
+        {
+            perror("malloc failed");
+            return NULL;
+        }
 
-		if (access(full_path, X_OK) == 0)
-			return (full_path);
+        strcpy(full_cmnd, dir);
+        strcat(full_cmnd, "/");
+        strcat(full_cmnd, command);
 
-		free(full_path);
-		token = _strtok(NULL, ":");
-	}
+        if (stat(full_cmnd, &st) == 0)
+        {
+            return full_cmnd;
+        }
 
-	return (NULL);
+        free(full_cmnd);
+        dir = strtok(NULL, ":");
+    }
+
+    return NULL;
 }

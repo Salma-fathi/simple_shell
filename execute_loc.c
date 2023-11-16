@@ -12,7 +12,7 @@ int _execute(char **command, char **argv, int ind)
 {
     pid_t child;
     int status;
-    char *full_cmnd;
+    char *full_cmnd = NULL;
 
     full_cmnd = get_path(command[0]);
     if (!full_cmnd)
@@ -36,6 +36,8 @@ int _execute(char **command, char **argv, int ind)
         if (execve(full_cmnd, command, environ) == -1)
         {
             perror("execve failed");
+            free_array_string(command);
+            free(full_cmnd);
             exit(EXIT_FAILURE);
         }
         exit(EXIT_SUCCESS);
@@ -49,4 +51,3 @@ int _execute(char **command, char **argv, int ind)
 
     return WEXITSTATUS(status);
 }
-
