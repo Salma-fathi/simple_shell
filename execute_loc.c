@@ -8,37 +8,45 @@
  * @ind: index
  * Return: the status of the operation
  */
-int _execute( char **name, char **argv, int ind,char *line)
+int _execute(char **command, char **argv, int ind)
 {
-    int status = 0;
-	char *path = NULL;
-	char *command;
-	pid_t id = fork();
+    pid_t child;
+    int status;
+    char *full_cmnd;
 
-	if (id == 0)
-	{
-		if (_strchr(args[0], '/') == NULL)
-		{
-			path = _getenv("PATH");
-			command = get_full_path(args[0], path);
-			if (command == NULL)
-			{
-				print_error(name[0], args[0], ind);
-				return (127);
-			}
-		}
-		else
-			command = args[0];
+    full_cmnd = get_path(command[0]);
+    if (!full_cmnd)
+    {
+        printerror(argv[0], command[0], ind);
+        free_array_string(command);
+        return 127;
+    }
 
-		if (execve(command, args, environ) == -1)
-		{
-			/*perror(args[0]);*/
-			free(args);
-			free(line);
-			exit(127);
-		}
-	}
-	else
-		waitpid(id, &status, 0);
-	return (WEXITSTATUS(status));
+    child = fork();
+    if (child == -1)
+    {
+        perror("fork failed");
+        free_array_string(command);
+        free(full_cmnd);
+        return -1;
+    }
+
+    if (child == 0)
+    {
+        if (execve(full_cmnd, command, environ) == -1)
+        {
+            perror("execve failed");
+            exit(EXIT_FAILURE);
+        }
+        exit(EXIT_SUCCESS);
+    }
+    else
+    {
+        waitpid(child, &status, 0);
+        free_array_string(command);
+        free(full_cmnd);
+    }
+
+    return WEXITSTATUS(status);
 }
+
