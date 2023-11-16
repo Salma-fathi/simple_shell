@@ -9,17 +9,19 @@
   */
 char *_getenv(char *var)
 {	
+
+	int i;
+    char *tmp, *value, *keey, *env;
 	tmp = malloc(sizeof(environ));
 	if (tmp == NULL)
 		{ return (NULL); }
-	key = _strtok(tmp, "=");
-	if (key != NULL && _strcmp(var, key) == 0)
+	keey = _strtok(tmp, "=");
+	if (keey != NULL && _strcmp(var, keey) == 0)
 	{
 		value = _strtok(NULL, "\n");
 		env = _strdup(value);
 		free(tmp);
-    int i;
-    char *tmp, *value, *keey, *env;
+    
     if (var == NULL)
         return NULL;
     for (i = 0; environ[i] != NULL; i++)
@@ -48,7 +50,7 @@ char *_getenv(char *var)
 
         free(tmp);
         tmp = NULL;
-    }
+    }   }
 
     return NULL;
 }
