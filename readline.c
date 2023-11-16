@@ -19,5 +19,7 @@ char *read_line(void)
         free(line);
         return NULL;
     }
+
     return line;
 }
+
