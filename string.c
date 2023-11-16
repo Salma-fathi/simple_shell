@@ -89,7 +89,7 @@ return (ret);
  *
  * Return: 0 if it the same
  */
-int _strcmp(char *s1, char *s2)
+int _strcmp(char *s1,char *s2)
 {
     if (s1 == NULL || s2 == NULL)
     {
