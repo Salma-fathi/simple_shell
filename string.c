@@ -20,31 +20,29 @@ while (src[i])
         dest[i] = 0;
         return (dest); }
 /**
- * *_strdup - function that duplicates a string
- * Description: c programm
- * @str: the string to duplicate
- *
- * Return: pointer to the duplicated string
+ * _strdup - Duplicates a string using malloc
+ * @str: String to duplicate
+ * Return: Pointer to the newly allocated string
  */
 char *_strdup(char *str)
 {
-    int length = 0;
-    char *d;
-    
-    if (str == NULL)
+    char *dup;
+    int len = 0, i;
+
+    if (!str)
         return NULL;
-    
-    while (*str++)
-        length++;
-    
-    d = malloc(sizeof(char) * (length + 1));
-    if (d == NULL)
+
+    while (str[len])
+        len++;
+
+    dup = malloc((len + 1) * sizeof(char));
+    if (!dup)
         return NULL;
-    
-    for (length++; length--;)
-        d[length] = *--str;
-    
-    return d;
+
+    for (i = 0; i <= len; i++)
+        dup[i] = str[i];
+
+    return dup;
 }
 /**
  * _strlen - returns the length of a string

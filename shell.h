@@ -31,7 +31,6 @@ void printerror(char *name, char *command, int ind);
 void rev_str(char *str, int len);
 char *_itoa(int n);
 int is_positive_num(char *str);
-char *_strtok(char *str, char *del);
 char *get_path(char *command);
 
 
@@ -42,6 +41,8 @@ char *_strcat(char *dest, char *src);
 size_t _strlen(char *s1);
 char *_strdup(char *str);
 char *_strcpy(char *dest, char *src);
+char *_strtok(char *str,char *delim)
+
 /*  */
 
 void _free(char *f1, char **f2);

@@ -7,32 +7,27 @@
  * @del: separator
  * Return: pointer to the next token
  */
-char *_strtok(char *str, char *del)
+char *_strtok(char *str,char *delim)
 {
-	static char *lastToken = NULL;
+    static char *lastToken = NULL;
+    char *token;
 
-	char *tokenStart, *tokenEnd;
-	if (str != NULL)
-	{
-		lastToken = str;
-	}
-	else if (lastToken == NULL || *lastToken == '\0')
-	{
-		return (NULL);
-	}
+    if (str)
+        lastToken = str;
 
-	tokenStart = lastToken;
-	tokenEnd = strpbrk(tokenStart, del);
+    if (!lastToken || !delim || !(*lastToken))
+        return NULL;
 
-	if (tokenEnd != NULL)
-	{
-		*tokenEnd = '\0';
-		lastToken = tokenEnd + 1;
-	}
-	else
-	{
-		lastToken += strlen(lastToken);
-	}
+    token = lastToken;
 
-	return (tokenStart);
+    while (*lastToken && !strchr(delim, *lastToken))
+        lastToken++;
+
+    if (*lastToken)
+    {
+        *lastToken = '\0';
+        lastToken++;
+    }
+
+    return token;
 }
