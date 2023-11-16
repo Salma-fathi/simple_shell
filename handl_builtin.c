@@ -8,7 +8,7 @@
 
 int is_builtin(char **command)
 {
-	int i;
+    int i;  /*Declare the variable at the beginning*/
     if (!command || !command[0])
     {
         return 0;
