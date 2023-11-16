@@ -11,6 +11,8 @@ char **tokenzer(char *Line)
     char **command = NULL;
     int i = 0;
     char *tmp = NULL;
+    
+
     if (!Line)
         return NULL;
 
@@ -18,6 +20,7 @@ char **tokenzer(char *Line)
 
     token = _strtok(tmp, ARR);
     i = 0;
+    j = 0; 
     while (token)
     {
         i++;
@@ -36,19 +39,18 @@ char **tokenzer(char *Line)
 
     token = _strtok(tmp, ARR);
     i = 0;
-    while (token)
+    while (i < i + 1 && (token = _strtok(NULL, ARR)))
     {
         command[i] = _strdup(token);
         if (!command[i])
         {
-            for (int j = 0; j < i; j++)
+            for (j = 0; j < i; j++) 
                 free(command[j]);
             free(command);
             free(tmp);
             return NULL;
         }
         i++;
-        token = _strtok(NULL, ARR);
     }
 
     command[i] = NULL;
@@ -56,3 +58,4 @@ char **tokenzer(char *Line)
 
     return command;
 }
+
