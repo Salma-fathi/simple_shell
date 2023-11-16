@@ -19,7 +19,7 @@ char *get_path(char *command)
 
     dir = strtok(env_path, ":");
     while (dir != NULL)
-{
+    {
     char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
     if (!full_cmnd)
     {
@@ -35,7 +35,7 @@ char *get_path(char *command)
     {
         return full_cmnd;
     }
-
     free(full_cmnd);
     dir = strtok(NULL, ":");
+  }
 }
