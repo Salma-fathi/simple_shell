@@ -6,7 +6,6 @@
  * @command: command entered by the user
  * Return: the path on success and NULL on failure
  */
-
 char *get_path(char *command)
 {
     char *env_path = getenv("PATH");
@@ -17,19 +16,22 @@ char *get_path(char *command)
     {
         return NULL;
     }
-    dir = strtok(strdup(env_path), ":");
+
+    dir = strtok(env_path, ":");
+
     while (dir != NULL)
     {
-        char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
+        size_t len_dir = strlen(dir);
+        size_t len_command = strlen(command);
+        char *full_cmnd = malloc(len_dir + len_command + 2);
+
         if (!full_cmnd)
         {
             perror("malloc failed");
             return NULL;
         }
 
-        strcpy(full_cmnd, dir);
-        strcat(full_cmnd, "/");
-        strcat(full_cmnd, command);
+        snprintf(full_cmnd, len_dir + len_command + 2, "%s/%s", dir, command);
 
         if (stat(full_cmnd, &st) == 0)
         {
