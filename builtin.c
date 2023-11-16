@@ -1,18 +1,18 @@
 #include "shell.h"
 /**
- * check_built - check if the user input is built in function
- * @command: the input of user
- * Return: 1 if true and 0 if false
+ * check_built - function that check if the user input is built in function
+ * @cmd: the input command
+ * Return: 1 on success  and 0 on failure
  */
 
-int check_built(char *command)
+int check_built(char *cmd)
 {
-	char *built_fun[] = {"exit", "env", "cd", NULL};
-	int i;
+	char *built_function[] = {"exit", "cd", "env", NULL};
+	int j;
 
-	for (i = 0; built_fun[i]; i++)
+	for (j = 0; built_function[j]; j++)
 	{
-		if (_strcmp(command, built_fun[i]) == 0)
+		if (_strcmp(cmd, built_function[j]) == 0)
 			return (1);
 	}
 
@@ -21,58 +21,59 @@ int check_built(char *command)
 
 /**
  * handle_built - handle the built in function
- * @args: the array of spilted command
+ * @arry:  array of spilted command
  * @status: the status of operation
- * @command: the user input
- * @ind: the index of process
+ * @cmd: the user input
+ * @index: the index of process
  * @argv: - the argument of main function
  * @tokenizer: the array were sparated by ;
  */
-void handle_built(char **args, int status, char *command, int ind,
-		char **argv, char **tokenizer)
+void handle_built(char **arry, int status, char *cmd, int index,
+char **argv, char **tokenizer)
 {
-	int i = 0;
-	char *id = NULL;
+int j = 0;
+char *ID = NULL;
 
-	if (_strcmp(args[0], "exit") == 0)
+	if (_strcmp(arry[0], "exit") == 0)
 	{
-		if (args[1])
-			status = _atoi_(args[1]);
+		if (arry[1])
+			status = _atoi_(arry[1]);
 		else
-			free(tokenizer), _free(command, args), exit(status);
-		if (args[1][0] == '-')
+			free(tokenizer), _free(cmd, arry), exit(status);
+		if (arry[1][0] == '-')
 		{
-			id = _itoa(ind);
+			ID = _itoa(index);
 			write(STDERR_FILENO, argv[0], _strlen(argv[0]));
 			write(STDERR_FILENO, ": ", 2);
-			write(STDERR_FILENO, id, _strlen(id));
+			write(STDERR_FILENO, ID, _strlen(ID));
 			write(STDERR_FILENO, ": exit", 6);
 			write(STDERR_FILENO, ": ", 2);
 			write(STDERR_FILENO, "Illegal number: ", 16);
-			write(STDERR_FILENO, args[1], _strlen(args[1]));
+			write(STDERR_FILENO, arry[1], _strlen(arry[1]));
 			write(STDERR_FILENO, "\n", 1);
-			_free(command, args), free(id), exit(2);
+			_free(cmd, arry), free(ID), exit(2);
 		}
-		_free(command, args), free(tokenizer), free(id);
+		_free(cmd, arry), free(tokenizer), free(ID);
 		exit(status);
 	}
-	else if (_strcmp(args[0], "env") == 0)
+	else if (_strcmp(arry[0], "env") == 0)
 	{
-		for (i = 0; environ[i]; i++)
+		for (j = 0; environ[j]; j++)
 		{
-			write(STDOUT_FILENO, environ[i], _strlen(environ[i]));
+			write(STDOUT_FILENO, environ[j], _strlen(environ[j]));
 			write(STDOUT_FILENO, "\n", 1);
 		}
-		free(args);
+		free(arry);
 	}
 }
+
 /**
- * _free - free two element
- * @f1: first element
- * @f2: second elment
+ * _free - function that free two element
+ * @f: the first element
+ * @f1: the second elment
  */
-void _free(char *f1, char **f2)
+void _free(char *f, char **f1)
 {
-	free(f1);
-	free(f2);
+		free(f);
+		free(f1);
 }
