@@ -9,13 +9,12 @@
 int is_builtin(char **command)
 {
     int i;  /*Declare the variable at the beginning*/
+	char *builtins[] = {"exit", "env", "setenv", "cd", NULL};
+	
     if (!command || !command[0])
     {
         return 0;
     }
-
-    char *builtins[] = {"exit", "env", "setenv", "cd", NULL};
-
     for (i = 0; builtins[i]; i++)
     {
         if (_strcmp(command[0], builtins[i]) == 0)
