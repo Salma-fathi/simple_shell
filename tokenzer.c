@@ -38,10 +38,11 @@ char **tokenzer(char *Line)
     i = 0;
     while (token)
     {
-        command[i++] = token;
+        command[i++] = _strdup(token);
         token = _strtok(NULL, ARR);
     }
     command[i] = NULL;
     free(tmp);
+
     return command;
 }
