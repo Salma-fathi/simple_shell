@@ -6,44 +6,28 @@
  * @command: command entered by the user
  * Return: the path on success and NULL on failure
  */
-/**
- * get_path - function that gets the path of the command
- * Description: C program
- * @command: command entered by the user
- * Return: the path on success and NULL on failure
- */
-char *get_path(char *command)
+
+char *get_path(char *command,char *path)
 {
-    char *env_path = getenv("PATH");
-    char *dir;
-    struct stat st;
+	char *token;
+	char *full_path = NULL;
+	token = _strtok(path, ":");
+	while (token != NULL)
+	{
+		full_path = malloc(_strlen(token) + _strlen(command) + 1);
+		if (full_path == NULL)
+			return (NULL);
 
-    if (!env_path)
-    {
-        return NULL;
-    }
-    dir = strtok(strdup(env_path), ":");
-    while (dir != NULL)
-    {
-        char *full_cmnd = (char *)malloc(strlen(dir) + strlen(command) + 2);
-        if (!full_cmnd)
-        {
-            perror("malloc failed");
-            return NULL;
-        }
+		_strcpy(full_path, token);
+		_strcat(full_path, "/");
+		_strcat(full_path, command);
 
-        strcpy(full_cmnd, dir);
-        strcat(full_cmnd, "/");
-        strcat(full_cmnd, command);
+		if (access(full_path, X_OK) == 0)
+			return (full_path);
 
-        if (stat(full_cmnd, &st) == 0)
-        {
-            return full_cmnd;
-        }
+		free(full_path);
+		token = _strtok(NULL, ":");
+	}
 
-        free(full_cmnd);
-        dir = strtok(NULL, ":");
-    }
-
-    return NULL;
+	return (NULL);
 }

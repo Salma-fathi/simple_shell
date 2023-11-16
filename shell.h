@@ -24,7 +24,7 @@ void print_env(char **command);
 char *read_line(void);
 char **tokenzer(char *Line);
 /*                     */
-int _execute(char **command, char **argv, int ind);
+int _execute( char **name, char **argv, int ind,char *line);
 void free_array_string(char **arry);
 void printerror(char *name, char *command, int ind);
 
@@ -32,7 +32,8 @@ void rev_str(char *str, int len);
 char *_itoa(int n);
 int is_positive_num(char *str);
 char *_strtok(char *str, char *del);
-char *get_path(char *command);
+char *get_path(char *command,char *path);
+
 
 /* fun string */
 char *_strchr(char *s, char c);
