@@ -7,14 +7,14 @@
  * Return: the path on success and NULL on failure
  */
 
-char *get_path(char *command,char *path)
+char *get_path(char *command)
 {
 	char *token;
 	char *full_path = NULL;
 	token = _strtok(path, ":");
 	while (token != NULL)
 	{
-		full_path = malloc(_strlen(token) + _strlen(command) + 1);
+		full_path = malloc(_strlen(token) + _strlen(command) + 2);
 		if (full_path == NULL)
 			return (NULL);
 
