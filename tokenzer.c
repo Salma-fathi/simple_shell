@@ -11,8 +11,6 @@ char **tokenzer(char *Line)
     char **command = NULL;
     int i = 0;
     char *tmp = NULL;
-    int j;
-
     if (!Line)
         return NULL;
 
@@ -20,7 +18,6 @@ char **tokenzer(char *Line)
 
     token = _strtok(tmp, ARR);
     i = 0;
-    j = 0;
     while (token)
     {
         i++;
