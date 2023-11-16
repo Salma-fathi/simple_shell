@@ -8,12 +8,12 @@
 
 int is_builtin(char **command)
 {
+	int i;
     if (!command || !command[0])
     {
         return 0;
     }
 
-    int i;
     char *builtins[] = {"exit", "env", "setenv", "cd", NULL};
 
     for (i = 0; builtins[i]; i++)
