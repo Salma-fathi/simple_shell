@@ -1,12 +1,12 @@
 #include "shell.h"
 /**
- * comment - function that handles the comments from the user
+ * _comment - function that handles the comments from the user
  * Description: c programm
  * @lin: the input from user
  * Return: nothing
  */
 
-void comment(char *lin)
+void _comment(char *lin)
 {
 	int m = 0;
 

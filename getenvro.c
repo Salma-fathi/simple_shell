@@ -5,15 +5,15 @@
  * @viron: the environment variable
  * Return: on success the path and on failure 0
  */
-char *_getenv(char *viron)
+char *_getenv(char *virn)
 {
-size_t length = _strlen(viron);
+size_t length = _strlen(virn);
 char **env = environ;
 
 
 	while (*env)
 	{
-		if (_strncmp(*env, viron, length) == 0 && (*env)[length] == '=')
+		if (_strncmp(*env, virn, length) == 0 && (*env)[length] == '=')
 			{ return (&(*env)[length + 1]); }
 		env++;
 	}

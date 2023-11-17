@@ -2,48 +2,53 @@
 
 /**
  * main - entry point
+ * Description: c programm
  * @ac: counts arg number
  * @argv: array of string
  * Return: 0 in success and -1 in fail
  */
 int main(int ac, char **argv)
 {
-	char *line = NULL, **tokens = NULL, **tokenizer = NULL;
-	int status = 0, ind = 0, i;
-	(void) ac;
+char *lin = NULL, **tokns = NULL, **toknizer = NULL;
+int status = 0, index = 0, j;
+(void) ac;
+
 
 	while (1)
 	{
-		line = read_line();
-		if (line == NULL)
+		lin = read_line();
+
+		if (lin == NULL)
 			return (status);
-		comment(line);
-		if (is_empty(line))
+		_comment(lin);
+		if (is_empty(lin))
 		{
-			free(line), status = 0;
+			free(lin), status = 0;
 			continue;
 		}
-		ind++;
-		tokenizer = spilt_line(line, ";");
-		if (tokenizer == NULL)
+		index++;
+		toknizer = spilt_line(lin, ";");
+
+		if (tokenizr == NULL)
 			continue;
-		for (i = 0; tokenizer[i] != NULL; i++)
+		for (j = 0; toknizer[j] != NULL; j++)
 		{
-			tokens = spilt_line(tokenizer[i], " \n\t");
-			if (tokens == NULL)
+			tokns = spilt_line(toknizer[j], " \n\t");
+			if (tokns == NULL)
 			{
-				free(tokens);
+				free(tokns);
 				continue;
 			}
-			if (check_built(line))
+			if (check_built(lin))
 			{
-				handle_built(tokens, status, line, ind, argv, tokenizer);
+				handle_built(tokns, status, lin, index, argv, toknizer);
 				continue;
 			}
-			status = exec(tokens, line, ind, argv);
-			free(tokens);
+			status = _exec(tokns, lin, index, argv);
+			free(tokns);
 		}
-		free(tokenizer), free(line);
+		free(toknizer), free(lin);
 	}
+
 	return (status);
 }

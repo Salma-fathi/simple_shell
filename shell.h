@@ -11,70 +11,42 @@
 #include <ctype.h>
 
 extern char **environ;
-
-/* main functions  */
-
 char *read_line(void);
-
-char **spilt_line(char *new_line, char *del);
-
-int exec(char **args, char *line, int ind, char **name);
-
-size_t _getline(char **lineptr, size_t *m, FILE *stream);
-
-void comment(char *line);
-
-char *_strtok(char *str, char *del);
-
+char **spilt_line(char *new_lin, char *delm);
+int _exec(char **arry, char *lin, int index, char **name);
+size_t _getline(char **linptr, size_t *n, FILE *stream);
+void _comment(char *lin);
+char *_strtok(char *string, char *delm);
 char *handle_path(char *command, char *path);
-
 char *_getpath(char *command, char *path);
+char *get_full_path(char *cmd, char *path);
 
-char *get_full_path(char *command, char *path);
+int check_built(char *cmd);
+void handle_built(char **arry, int status,
+		char *cmd, int index, char **argv, char **tokenizer);
+char *_getenv(char *virn);
 
-int check_built(char *command);
 
-void handle_built(char **args, int status,
-		char *command, int ind, char **argv, char **tokenizer);
-
-char *_getenv(char *viron);
-
-/*  strings  */
-
-int _strlen(char *str);
-
+int _strlen(char *s);
 char *_strcat(char *dest, char *src);
-
 char *_strcpy(char *dest, char *src);
+int _strcmp(char *str1, char *str2);
+char *_strchr(char *str, char c);
+char *_strdup(char *string);
+int _strncmp(const char *s1, const char *s2, size_t numb);
 
-int _strcmp(char *s1, char *s2);
 
-char *_strchr(char *s, char c);
-
-char *_strdup(char *str);
-
-int _strncmp(const char *str1, const char *str2, size_t num);
-
-/* helper  */
-
-int _isspace(char c);
-
-int is_empty(const char *str);
-
+int _isspace(char s);
+int _isempty(const char *string);
 int _atoi_(char *str);
+void _free(char *f, char **f);
 
-void _free(char *f1, char **f2);
-/* write  */
 
-int _putchar(char c);
+int _putchar(char p);
+void _puts(char *string);
 
-void _puts(char *str);
 
-/* test */
-
-void print_error(char *name, char *command, int ind);
-
-char *_itoa(int n);
-
-void rev_str(char *str, int len);
+void print_error(char *name, char *cmd, int index);
+char *_itoa(int m);
+void rev_str(char *string, int length);
 #endif

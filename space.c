@@ -1,10 +1,10 @@
 #include "shell.h"
 /**
- * is_empty - function that check if the user give empty input
+ * _isempty - function that check if the user give empty input
  * @string: input of the user
  * Return: if true return 1 if false return 0
  */
-int is_empty(const char *string)
+int _isempty(const char *string)
 {
 	if (string == NULL)
 		{ return (1); }
