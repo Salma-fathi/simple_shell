@@ -10,7 +10,7 @@ void print_error(char *name, char *cmd, int index)
 {
 	char *id, messg[] = ": not found\n";
 
-	id = _itoa(ind);
+	id = _itoa(index);
 	write(STDERR_FILENO, name, _strlen(name));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, id, _strlen(id));

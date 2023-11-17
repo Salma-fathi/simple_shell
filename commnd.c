@@ -11,7 +11,7 @@ void comment(char *lin)
 	int m = 0;
 
 
-	if (line[m] == '#')
+	if (lin[m] == '#')
 		{ (lin[m]) = '\0'; }
 	while (lin[m] != '\0')
 	{

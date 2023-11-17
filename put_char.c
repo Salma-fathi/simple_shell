@@ -1,15 +1,14 @@
 #include "shell.h"
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _putchar - function that writes the character p to stdout
+ * Description: c programm
+ * @p: The character to print
+ * Return: On success 1 and On error -1 is returned
  */
-int _putchar(char c)
+int _putchar(char p)
 {
-	return (write(1, &c, 1));
+	return (write(1, &p, 1));
 }
 
 /**

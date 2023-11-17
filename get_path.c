@@ -7,7 +7,7 @@
  */
 char *get_full_path(char *cmd, char *path)
 {
-char *token, *full_path = NULL;
+char *tokn, *full_path = NULL;
 tokn = _strtok(path, ":");
 
 	while (tokn != NULL)
