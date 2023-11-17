@@ -1,27 +1,25 @@
 #include "shell.h"
 /**
- * read_line - read the line from user
- *
- * Return: return the line from user
+ * read_line - function that read the line from user
+ * Description: c programm
+ * Return: the line from user
  */
-
 char *read_line(void)
 {
-	char *new_line = NULL;
-	size_t buff_len = 0;
-	ssize_t chars;
+char *new_lin = NULL;
+size_t buff_length = 0;
+ssize_t chars;
 
 	if (isatty(STDIN_FILENO))
-		write(1, "$ ", 2);
+		{ write(1, "$ ", 2); }
 
-	chars = _getline(&new_line, &buff_len, stdin);
-
+	chars = _getline(&new_lin, &buff_length, stdin);
 	if (chars == -1)
 	{
 		if (isatty(STDIN_FILENO))
-			write(1, "\n", 1);
-		free(new_line);
+			{ write(1, "\n", 1); }
+		free(new_lin);
 		return (NULL);
 	}
-	return (new_line);
+	return (new_lin);
 }

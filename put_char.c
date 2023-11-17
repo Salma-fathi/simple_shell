@@ -14,7 +14,7 @@ int _putchar(char p)
 /**
   * _puts - function that  print string
   * Description: c programm
-  * string: input value
+  * @string: input value
   * Return: nothing
   */
 void _puts(char *string)
