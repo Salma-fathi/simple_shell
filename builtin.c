@@ -37,7 +37,7 @@ char *ID = NULL;
 	if (_strcmp(arry[0], "exit") == 0)
 	{
 		if (arry[1])
-			status = _atoi_(arry[1]);
+			status = _atoin(arry[1]);
 		else
 			free(tokenizer), _free(cmd, arry), exit(status);
 		if (arry[1][0] == '-')

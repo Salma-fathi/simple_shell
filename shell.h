@@ -38,7 +38,7 @@ int _strncmp(const char *s1, const char *s2, size_t numb);
 
 int _isspace(char s);
 int _isempty(const char *string);
-int _atoi_(char *str);
+int _atoin(char *str);
 void _free(char *f, char **f1);
 
 
