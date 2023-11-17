@@ -1,49 +1,50 @@
 #include "shell.h"
 /**
- * print_error - displays error message
+ * print_error - function that displays error message
  * @name: shell name
- * @command: user command
+ * @cmd: the user command
  * @ind: error index
+ * Return: nothing
  */
-void print_error(char *name, char *command, int ind)
+void print_error(char *name, char *cmd, int index)
 {
-	char *id, msg[] = ": not found\n";
+	char *id, messg[] = ": not found\n";
 
 	id = _itoa(ind);
 	write(STDERR_FILENO, name, _strlen(name));
 	write(STDERR_FILENO, ": ", 2);
 	write(STDERR_FILENO, id, _strlen(id));
 	write(STDERR_FILENO, ": ", 2);
-	write(STDERR_FILENO, command, _strlen(command));
-	/*write(STDERR_FILENO, ": ", 2);*/
-	write(STDERR_FILENO, msg, _strlen(msg));
+	write(STDERR_FILENO, cmd, _strlen(cmd));
+
+	write(STDERR_FILENO, messg, _strlen(messg));
 	free(id);
 }
 
 /**
  * _itoa - change the int to char
- * @n:the int number
+ * @m:the int number
  * Return: the char
  */
-char *_itoa(int n)
+char *_itoa(int m)
 {
-	char buff[25];
-	int i = 0;
+	char buf[25];
+	int j = 0;
 
-	if (n == 0)
-		buff[i++] = '0';
+	if (m == 0)
+		{ buf[j++] = '0';  }
 	else
 	{
-		while (n > 0)
+		while (m > 0)
 		{
-			buff[i++] = (n % 10) + '0';
-			n /= 10;
+			buf[j+] = (m% 10) + '0';
+			m /= 10;
 		}
 	}
-	buff[i] = '\0';
-	rev_str(buff, i);
+	buf[j] = '\0';
+	rev_str(buf, j);
 
-	return (_strdup(buff));
+	return (_strdup(buf));
 }
 
 /**
