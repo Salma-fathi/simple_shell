@@ -1,32 +1,30 @@
 #include "shell.h"
 /**
- * spilt_line - splits the command entered from the user
- * @new_line: the input from user
- * @del: delimeter
+ * spilt_line - function that splits the command entered from the user
+ * @new_lin: input from user
+ * @delm: the delimeter
  * Return: the array of the splited command
  */
-
-char **spilt_line(char *new_line, char *del)
+char **spilt_line(char *new_lin, char *delm)
 {
-	int len = 0;
-	char **args = NULL;
-	char *token = NULL;
+	int length = 0;
+	char **arg = NULL, char *token = NULL;
 
-	args = malloc(sizeof(char *) * 25);
-	if (args == NULL)
-		return (NULL);
-	token = _strtok(new_line, del);
-	if (!token)
+	arg = malloc(sizeof(char *) * 25);
+	if (arg == NULL)
+		{ return (NULL); }
+	tokn = _strtok(new_lin, delm);
+	if (!tokn)
 	{
-		free(new_line);
+		free(new_lin);
 		return (NULL);
 	}
-	while (token != NULL)
+	while (tokn != NULL)
 	{
-		args[len] = token;
-		len++;
-		token = _strtok(NULL, del);
+		arg[length] = tokn;
+		length++;
+		tokn = _strtok(NULL, delm);
 	}
-	args[len] = NULL;
-	return (args);
+	arg[length] = NULL;
+	return (arg);
 }
