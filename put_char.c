@@ -12,16 +12,17 @@ int _putchar(char p)
 }
 
 /**
-  * _puts - function print string
-  * @str: input value
- */
-
-void _puts(char *str)
+  * _puts - function that  print string
+  * Description: c programm
+  * string: input value
+  * Return: nothing
+  */
+void _puts(char *string)
 {
-	while (*str != '\0')
+	while (*string != '\0')
 	{
-		_putchar(*str + 0);
-		str++;
+		_putchar(*string + 0);
+		string++;
 	}
 	_putchar('\n');
 }
