@@ -1,20 +1,23 @@
 #include "shell.h"
 /**
- * _atoi_ - convert the char to int
- * @str: the string we want to convert it
- * Return: the converted int
+ * _atoin - function that convert the char to integer
+ * Description: c programm
+ * @string:  string we want to convert it
+ * Return: return the converted integer
  */
-int _atoi_(char *str)
+int _atoin(char *string)
 {
-	int rel= 0;
-	int i, j;
+	int res= 0, m, n;
 
-	i = _strlen(str);
-	for (j = 0; j< i; j++)
+	m = _strlen(string);
+	for (n = 0; n< m; n++)
 	{
-		if (str[j] < '0' || str[j] > '9')
+		if (string[n] < '0' || string[n] > '9')
+		{
 			break;
-		result = result * 10 + str[j] - '0';
+		}
+		res = res * 10 + string[n] - '0';
 	}
-	return (rel);
+
+	return (res);
 }

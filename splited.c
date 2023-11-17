@@ -8,7 +8,7 @@
 char **spilt_line(char *new_lin, char *delm)
 {
 	int length = 0;
-	char **arg = NULL, char *token = NULL;
+	char **arg = NULL, *tokn = NULL;
 
 	arg = malloc(sizeof(char *) * 25);
 	if (arg == NULL)

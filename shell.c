@@ -21,7 +21,7 @@ int status = 0, index = 0, j;
 		if (lin == NULL)
 			return (status);
 		_comment(lin);
-		if (is_empty(lin))
+		if (_isempty(lin))
 		{
 			free(lin), status = 0;
 			continue;
@@ -29,7 +29,7 @@ int status = 0, index = 0, j;
 		index++;
 		toknizer = spilt_line(lin, ";");
 
-		if (tokenizr == NULL)
+		if (toknizer == NULL)
 			continue;
 		for (j = 0; toknizer[j] != NULL; j++)
 		{
