@@ -1,31 +1,28 @@
 #include "shell.h"
 /**
- * is_empty - check if the user give empty input
- * @str: the input of the user
- * Return: if true return 1 else return 0
+ * is_empty - function that check if the user give empty input
+ * @string: input of the user
+ * Return: if true return 1 if false return 0
  */
-int is_empty(const char *str)
+int is_empty(const char *string)
 {
-	if (str == NULL)
-		return (1);
-
-	while (*str)
+	if (string == NULL)
+		{ return (1); }
+	while (*string)
 	{
-		if (!_isspace(*str))
-			return (0);
-		str++;
+		if (!_isspace(*string))
+			{ return (0); }
+		string++;
 	}
-
 	return (1);
 }
 /**
- * _isspace - check the character of input
- * @c: the character of input
- * Return: 0 if false, 1 if true
+ * _isspace - function that check the character of input
+ * @m: character of input
+ * Return: 0 if false and 1 if true
  */
-
-int _isspace(char c)
+int _isspace(char m)
 {
-	return (c == ' ' || c == '\t' || c == '\n' ||
-			c == '\v' || c == '\f' || c == '\r');
+	return (m == ' ' || m == '\t' || m == '\n' ||
+		m == '\v' || m == '\f' || m == '\r');
 }
