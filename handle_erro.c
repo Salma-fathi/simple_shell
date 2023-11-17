@@ -3,7 +3,7 @@
  * print_error - function that displays error message
  * @name: shell name
  * @cmd: the user command
- * @ind: error index
+ * @index: error index
  * Return: nothing
  */
 void print_error(char *name, char *cmd, int index)
@@ -22,9 +22,10 @@ void print_error(char *name, char *cmd, int index)
 }
 
 /**
- * _itoa - change the int to char
- * @m:the int number
- * Return: the char
+ * _itoa - function that change the int to char
+ * Description: c programm
+ * @m:the integer number
+ * Return: the character
  */
 char *_itoa(int m)
 {
@@ -37,7 +38,7 @@ char *_itoa(int m)
 	{
 		while (m > 0)
 		{
-			buf[j+] = (m% 10) + '0';
+			buf[j++] = (m % 10) + '0';
 			m /= 10;
 		}
 	}
@@ -48,21 +49,22 @@ char *_itoa(int m)
 }
 
 /**
- * rev_str - reverse string
- * @str: string to be reverted
- * @len: string length
+ * rev_str - function that reverse string
+ * @string: the string to be reverted
+ * @length: the string length
+ * Return: nothing
  */
-void rev_str(char *str, int len)
+void rev_str(char *string, int length)
 {
-	int begin = 0, end = len - 1;
+	int beg = 0, end = length - 1;
 	char copy;
 
-	while (begin < end)
+	while (beg < end)
 	{
-		copy = str[begin];
-		str[begin] = str[end];
-		str[end] = copy;
-		begin++;
+		copy = string[beg];
+		string[beg] = string[end];
+		string[end] = copy;
+		beg++;
 		end--;
 	}
 }
