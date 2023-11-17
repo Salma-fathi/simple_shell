@@ -1,45 +1,42 @@
 #include "shell.h"
 
 /**
- * exec - executes the user command
- * @args: the array of the splited command
- * @line: the input of the user
+ * exec - function that xecutes the user command
+ * @arry: array of the splited command
+ * @lin: input of the user
  * @name: shell name
- * @ind: index
- * Return: the status of the operation
+ * @index: the index
+ * Return: status of the operation
  */
-
-int exec(char **args, char *line, int ind, char **name)
+int exec(char **arry, char *lin, int index, char **name)
 {
-	int status = 0;
-	char *path = NULL;
-	char *command;
-	pid_t id = fork();
+int status = 0;
+char *path = NULL, *command;
+pid_t id = fork();
+
 
 	if (id == 0)
 	{
-		if (_strchr(args[0], '/') == NULL)
+		if (_strchr(arry[0], '/') == NULL)
 		{
 			path = _getenv("PATH");
-			command = get_full_path(args[0], path);
+			command = get_full_path(arry[0], path);
 			if (command == NULL)
 			{
-				print_error(name[0], args[0], ind);
+				print_error(name[0], arry[0], index);
 				return (127);
 			}
 		}
 		else
-			command = args[0];
-
-		if (execve(command, args, environ) == -1)
+			{ command = arry[0]; }
+		if (execve(command, arry, environ) == -1)
 		{
-			/*perror(args[0]);*/
-			free(args);
-			free(line);
+			free(arry);
+			free(lin);
 			exit(127);
 		}
 	}
 	else
-		waitpid(id, &status, 0);
+		{ waitpid(id, &status, 0); }
 	return (WEXITSTATUS(status));
 }

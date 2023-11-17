@@ -1,20 +1,23 @@
 #include "shell.h"
 /**
- * comment - handles the comments from the user
- * @line: the input from user
+ * comment - function that handles the comments from the user
+ * Description: c programm
+ * @lin: the input from user
+ * Return: nothing
  */
 
-void comment(char *line)
+void comment(char *lin)
 {
-	int j = 0;
+	int m = 0;
 
-	if (line[j] == '#')
-		(line[j]) = '\0';
-	while (line[j] != '\0')
+
+	if (line[m] == '#')
+		{ (lin[m]) = '\0'; }
+	while (lin[m] != '\0')
 	{
-		if (line[j] == '#' && line[j - 1] == ' ')
-			break;
-		j++;
+		if (lin[m] == '#' && lin[m - 1] == ' ')
+			{ break; }
+		m++;
 	}
-	line[j] = '\0';
+	lin[m] = '\0';
 }
