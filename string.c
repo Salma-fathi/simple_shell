@@ -1,158 +1,108 @@
 #include "shell.h"
 
 /**
- * _strchr - Returns a pointer to the first
- *       occurrence of the character
- * @s: string to search
- * @c: character to be searched for
- *
- * Return: the location
- */
-
-char *_strchr(char *s, char c)
-{
-	int i;
-
-	for (i = 0; s[i] != '\0'; i++)
-	{
-		if (s[i] == c)
-		{
-			return (&s[i]);
-		}
-	}
-	return (0);
-}
-
-/**
- * *_strdup - copy of the string
- * @str: input
- * Return: pointer
- */
-
-char *_strdup(char *str)
-{
-	int i, size;
-	char *m;
-
-	if (str == NULL)
-		return (NULL);
-
-	for (size = 0; str[size] != '\0'; size++)
-		;
-	size++;
-	m = malloc(size * sizeof(*str));
-
-	if (m == 0)
-		return (NULL);
-
-	for (i = 0; i < size; i++)
-		m[i] = str[i];
-	return (m);
-}
-
-/**
  * _strncmp - compare two strings
- * @str1: first string
- * @str2: second string
- * @num: size
+ * Description: c programm
+ * @s1: the first string
+ * @s2: the second string
+ * @numb: size
  * Return: comparsion
  */
-int _strncmp(const char *str1, const char *str2, size_t num)
+int _strncmp(const char *s1, const char *s2, size_t numb)
 {
-	size_t i;
+size_t j;
 
-	for (i = 0; i < num; i++)
+	for (j = 0; j < numb; j++)
 	{
-		if (str1[i] == '\0' || str1[i] != str2[i])
+		if (s1[j] == '\0' || s1[j] != s2[j])
 		{
-			return (str1[i] - str2[i]);
+			return (s1[j] - s2[j]);
 		}
 	}
 
 	return (0);
 }
 /**
- *  _strlen - print length of string
- *  @str: the string
- *
- *  Return: length
+ *  _strlen - function that print length of string
+ *  Description: c programm
+ *  @s: the string
+ *  Return: length of the enterde string
  */
-int _strlen(char *str)
+int _strlen(char *s)
 {
-	int len = 0, i;
+	int length = 0, j;
 
-	for (i = 0; str[i] != '\0'; i++)
-		len++;
-	return (len);
+	for (j = 0; s[j] != '\0'; j++)
+		{
+		length++;
+		}
+	return (length);
 }
 
 /**
- * _strcat - concatenates 2 strings
+ * _strcat - function that concatenates 2 strings
+ * Description: c programm
  * @dest: string to be appended to
  * @src: string to append
- *
- * Return: concatenated string
+ * Return: the concatenated string
  */
 char *_strcat(char *dest, char *src)
 {
-	int i = 0, j;
+	int m = 0, n;
 
-	while (dest[i] != '\0')
+	while (dest[m] != '\0')
 	{
-		i++;
+		m++;
 	}
-	for (j = 0; src[j] != '\0'; j++)
+	for (n = 0; src[n] != '\0'; n++)
 	{
-		dest[i + j] = src[j];
+		dest[m + n] = src[n];
 	}
-	dest[i + j] = '\0';
+	dest[m + n] = '\0';
 	return (dest);
 }
 
 /**
- * *_strcpy - copies the string pointed to by src
+ * *_strcpy - function that copies the string pointed to by s1
  * including the terminating null byte (\0)
- * to the buffer pointed to by dest
- * @dest: pointer to the buffer in which we copy the string
- * @src: string to be copied
- *
- * Return: return the copied string
+ * to the buffer pointed to by s2
+ * Description: c programm
+ * @s1: pointer to the buffer in which we copy the string
+ * @s2: string to be copied
+ * Return: the copied string
  */
-char *_strcpy(char *dest, char *src)
+char *_strcpy(char *s1, char *s2)
 {
-	int length, i;
+	int len = 0, j;
 
-	length = 0;
-
-	while (src[length] != '\0')
+	while (s2[len] != '\0')
 	{
-		length++;
+		len++;
 	}
 
-	for (i = 0; i < length; i++)
+	for (j = 0; j < len; j++)
 	{
-		dest[i] = src[i];
+		s2[j] = s1[j];
 	}
-	dest[i] = '\0';
-
-	return (dest);
+	s2[j] = '\0';
+	return (s2);
 }
 
 /**
- * _strcmp - compares 2 strings
- * @s1: first string
- * @s2: second string
- *
+ * _strcmp - function that compares 2 strings
+ * Description: c programm
+ * @str1: first string
+ * @str2: second string
  * Return: 0 if it the same
  */
-
-int _strcmp(char *s1, char *s2)
+int _strcmp(char *str1, char *str2)
 {
-	int i = 0;
+int j = 0;
 
-	while (s1[i] - s2[i] == 0 && s1[i] != '\0')
+
+	while (str1[j] - str2[j] == 0 && str1[j] != '\0')
 	{
-		i++;
+		j++;
 	}
-	return (s1[i] - s2[i]);
+	return (str1[j] - str2[j]);
 }
