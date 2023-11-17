@@ -1,38 +1,36 @@
 #include "shell.h"
 
 /**
- * _strtok - breaks the string into tokens
- * @str: string to be breaked down
- * @del: separator
+ * _strtok - function that breaks the string into tokensing
+ * Description: c programm
+ * @delm: the separator
+ * @string: the string
  * Return: poiner to the next token
  */
-char *_strtok(char *str, char *del)
+char *_strtok(char *string, char *delm)
 {
-	static char *token;
-	char *tokenizer;
+	static char *tokn;
+	char *toknizer;
 
-	if (str != NULL)
-		token = str;
+	if (string != NULL)
+		{ tokn = string; }
 
-	if (token == NULL)
-		return (NULL);
+	if (tokn == NULL)
+		{ return (NULL); }
 
-	while (*token != '\0' && _strchr(del, *token) != NULL)
-		token++;
+	while (*tokn != '\0' && _strchr(delm, *tokn) != NULL)
+		tokn++;
 
-	if (*token == '\0')
-		return (NULL);
+	if (*tokn == '\0')
+		{ return (NULL); }
 
-	tokenizer = token;
-
-	while (*token != '\0' && _strchr(del, *token) == NULL)
-		token++;
-
-	if (*token != '\0')
+	toknizer = tokn;
+	while (*tokn != '\0' && _strchr(delm, *tokn) == NULL)
+		tokn++;
+	if (*tokn != '\0')
 	{
-		*token = '\0';
-		token++;
+		*tokn = '\0';
+		tokn++;
 	}
-
-	return (tokenizer);
+	return (toknizer);
 }
