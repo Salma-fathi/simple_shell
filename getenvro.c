@@ -1,18 +1,20 @@
 #include "shell.h"
 /**
- * _getenv - gets environment path
- * @viron: the env variable
- * Return: the path
+ * _getenv - function that get environment path
+ * Description: c programm
+ * @viron: the environment variable
+ * Return: on success the path and on failure 0
  */
 char *_getenv(char *viron)
 {
-	size_t len = _strlen(viron);
-	char **env = environ;
+size_t length = _strlen(viron);
+char **env = environ;
+
 
 	while (*env)
 	{
-		if (_strncmp(*env, viron, len) == 0 && (*env)[len] == '=')
-			return (&(*env)[len + 1]);
+		if (_strncmp(*env, viron, length) == 0 && (*env)[length] == '=')
+			{ return (&(*env)[length + 1]); }
 		env++;
 	}
 	return (NULL);
