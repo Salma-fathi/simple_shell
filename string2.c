@@ -3,7 +3,7 @@
  * _strchr - function that Returns a pointer to the first
  * occurrence of the character
  * Description: c programm
- * @s: string to search
+ * @str: string to search
  * @c: character to be searched for.
  * Return: the location on success and 0 on failure
  */
@@ -36,17 +36,17 @@ int size;
 char *n;
 
 	if (string == NULL)
-                { return (NULL); }
+		{ return (NULL); }
 
-        for (size = 0; string[size] != '\0'; size++)
-                ;
-        size++;
-        n = malloc(size * sizeof(*string));
+	for (size = 0; string[size] != '\0'; size++)
+		;
+	size++;
+	n = malloc(size * sizeof(*string));
 
-        if (n == 0)
-                { return (NULL); }
-        for (j = 0; j < size; j++)
-                n[j] = string[j];
-        return (n);
+	if (n == 0)
+		{ return (NULL); }
+	for (j = 0; j < size; j++)
+		n[j] = string[j];
+	return (n);
 }
 
